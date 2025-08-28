@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחשבון קוד הכסף הנומרולוגי</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Warm elegant palette */
+            --desert-rock: #A09086; /* Latte */
+            --soft-sandstone: #E4D8CB; /* Chai */
+            --creamed-oat: #E4D8CB; /* Chai alias */
+            --porcelain-mist: #CDC6C3; /* Creme */
+            --feather-white: #F1EEEB; /* Froth */
+            --warm-gold: #CFB3A9; /* Cinna */
+            --gold-light: #E4D8CB; /* Chai light */
+            --text: #3f2e20; /* Deep soft brown */
+            --success: #2e7d4f;
+            --error: #c75b4a;
+            /* Extras used in explanation section */
+            --rich-brown: var(--text);
+            --cream-beige: var(--porcelain-mist);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--feather-white) 0%, var(--porcelain-mist) 60%, var(--soft-sandstone) 100%);
+            min-height: 100vh;
+            color: var(--text);
+            direction: rtl;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(160, 129, 90, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(231, 217, 182, 0.08) 0%, transparent 55%),
+                radial-gradient(circle at 50% 50%, rgba(225, 210, 187, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: backgroundFlow 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFlow {
+            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            50% { opacity: 0.7; transform: scale(1.1) rotate(2deg); }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            color: var(--desert-rock);
+            margin-bottom: 6px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: var(--desert-rock);
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .signature-image {
+            margin-top: 6px;
+            height: 60px;
+            width: auto;
+            opacity: 0.95;
+            filter: drop-shadow(0 0.5px 0 rgba(231,217,182,0.8));
+        }
+
+        .card {
+            background: linear-gradient(145deg, var(--feather-white), rgba(237, 232, 222, 0.8));
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 0 10px 24px rgba(63, 46, 32, 0.07);
+            border: 1px solid rgba(231, 217, 182, 0.7);
+            margin-bottom: 26px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--warm-gold), var(--gold-light), var(--warm-gold));
+            background-size: 200% 100%;
+            animation: shimmer 6s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 200% 0; }
+            50% { background-position: -200% 0; }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--soft-sandstone);
+            border-radius: 15px;
+            font-size: 1rem;
+            background: var(--feather-white);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--warm-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--warm-gold), var(--gold-light));
+            color: var(--text);
+            border: none;
+            padding: 14px 26px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin: 0 8px;
+            box-shadow: 0 8px 18px rgba(63, 46, 32, 0.08);
+            text-shadow: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(63, 46, 32, 0.12);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--desert-rock), var(--soft-sandstone));
+            box-shadow: 0 8px 20px rgba(164, 141, 120, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 12px 25px rgba(164, 141, 120, 0.4);
+        }
+
+        .result {
+            text-align: center;
+            margin: 24px 0;
+            padding: 18px 20px;
+            background: linear-gradient(145deg, rgba(46, 125, 90, 0.06), rgba(46, 125, 90, 0.08));
+            border-radius: 14px;
+            border: 1px solid rgba(46, 125, 90, 0.25);
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result h3 {
+            color: var(--success);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+    .code-display { font-size: 1.5rem; font-weight: 700; color: var(--desert-rock); letter-spacing: 5px; margin: 20px 0; direction: ltr; }
+
+        .number-btn {
+            display: inline-block;
+            padding: 10px 16px;
+            margin: 5px;
+            background: linear-gradient(135deg, var(--warm-gold), var(--gold-light));
+            color: var(--text);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-weight: 700;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 10px rgba(63, 46, 32, 0.08);
+            border: 1px solid rgba(231, 217, 182, 0.8);
+        }
+
+        .number-btn:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--warm-gold));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(63, 46, 32, 0.1);
+        }
+
+        .payment-section {
+            background: linear-gradient(145deg, rgba(231, 217, 182, 0.15), rgba(237, 232, 222, 0.25));
+            border: 1px solid var(--warm-gold);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 26px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--warm-gold), var(--gold-light), var(--warm-gold));
+            background-size: 200% 100%;
+            animation: shimmer 6s ease-in-out infinite;
+        }
+
+        .payment-section h3 {
+            color: var(--desert-rock);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .price-tag {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--desert-rock);
+            margin: 12px 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #8d8175;
+            font-size: 1.2rem;
+            margin-left: 10px;
+        }
+
+        .discount {
+            background: linear-gradient(135deg, #e7d9b6, #ecdcb9);
+            color: var(--text);
+            padding: 6px 12px;
+            border-radius: 18px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(63, 46, 32, 0.08);
+        }
+
+    .interpretations { margin-top: 34px; }
+
+        .interpretation-card {
+            background: linear-gradient(180deg, var(--feather-white), rgba(248, 249, 245, 0.85));
+            border-radius: 14px;
+            padding: 22px;
+            margin: 18px 0;
+            box-shadow: 0 8px 18px rgba(63, 46, 32, 0.08);
+            border-right: 3px solid var(--warm-gold);
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .interpretation-card.active {
+            display: block;
+        }
+
+        .interpretation-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(231, 217, 182, 0.7);
+        }
+
+        .interpretation-icon {
+            font-size: 2rem;
+            margin-left: 12px;
+            animation: pulse 2.2s ease-in-out infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .interpretation-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--desert-rock);
+        }
+
+        .interpretation-content {
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .main-description {
+            margin-bottom: 18px;
+            padding: 16px;
+            background: linear-gradient(145deg, rgba(231, 217, 182, 0.15), rgba(237, 232, 222, 0.25));
+            border-radius: 12px;
+            border-right: 3px solid var(--warm-gold);
+        }
+
+        .main-description p {
+            margin: 0;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .strengths, .challenges {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+    .strengths { background: linear-gradient(145deg, rgba(46, 125, 90, 0.06), rgba(46, 125, 90, 0.1)); border-right: 3px solid var(--success); }
+
+    .challenges { background: linear-gradient(145deg, rgba(199, 91, 74, 0.06), rgba(199, 91, 74, 0.1)); border-right: 3px solid var(--error); }
+
+        .strengths h4, .challenges h4 {
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .strengths h4 {
+            color: var(--success);
+        }
+
+        .challenges h4 {
+            color: var(--error);
+        }
+
+        .strengths ul, .challenges ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .strengths li, .challenges li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .error {
+            background: linear-gradient(145deg, rgba(231, 76, 60, 0.1), rgba(255, 99, 99, 0.1));
+            color: var(--error);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid rgba(231, 76, 60, 0.3);
+            font-weight: 600;
+        }
+
+        .logo-bottom {
+            display: block;
+            margin: 30px auto;
+            max-width: 300px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        /* עיצוב לסעיף הסבר החזרות */
+        .explanation-section {
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+
+        .explanation-card {
+            background: linear-gradient(145deg, var(--feather-white), rgba(237, 232, 222, 0.9));
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 12px 26px rgba(63, 46, 32, 0.08);
+            border: 1px solid rgba(231, 217, 182, 0.7);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(6px);
+        }
+
+        .explanation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--warm-gold), var(--gold-light), var(--warm-gold));
+            border-radius: 18px 18px 0 0;
+        }
+
+        .explanation-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+
+        .explanation-icon {
+            font-size: 2.2rem;
+            color: var(--desert-rock);
+        }
+
+        .explanation-header h3 {
+            color: var(--desert-rock);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+    .explanation-content { color: var(--rich-brown); line-height: 1.7; font-size: 1.05rem; }
+
+    .explanation-text > p:first-child { font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; color: var(--desert-rock); }
+
+        .key-insight {
+            background: linear-gradient(145deg, rgba(231, 217, 182, 0.15), rgba(237, 232, 222, 0.25));
+            padding: 16px;
+            border-radius: 12px;
+            margin: 16px 0;
+            border-right: 3px solid var(--warm-gold);
+            box-shadow: 0 4px 10px rgba(63, 46, 32, 0.06);
+        }
+
+    .key-insight h4 { color: var(--desert-rock); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+
+        .key-insight p {
+            margin: 0;
+            color: var(--rich-brown);
+        }
+
+        .important-note {
+            background: linear-gradient(145deg, rgba(46, 125, 90, 0.06), rgba(46, 125, 90, 0.1));
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 18px;
+            border: 1px solid rgba(46, 125, 90, 0.25);
+            text-align: center;
+        }
+
+    .important-note p { margin: 0; font-weight: 600; color: var(--rich-brown); }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .interpretation-card {
+                padding: 20px;
+                margin: 15px 0;
+            }
+
+            .explanation-card {
+                padding: 25px;
+                margin: 20px 0;
+            }
+
+            .explanation-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .explanation-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .explanation-content {
+                font-size: 1rem;
+            }
+
+            .key-insight {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            .key-insight h4 {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                margin: 5px;
+            }
+
+            .interpretation-card {
+                padding: 20px;
+            }
+
+            .code-display {
+                font-size: 1.3rem;
+                letter-spacing: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>מחשבון קוד הכסף</h1>
+            <p>גלו את הקוד הנומרולוגי הייחודי שלכם</p>
+            <img src="חתימההה.png" alt="Ksenia's Signature" class="signature-image" />
+        </div>
+
+        <div class="card">
+            <div id="error" class="error" style="display: none;"></div>
+
+            <form id="calculator-form">
+                <div class="form-group">
+                    <label for="birthdate">תאריך לידה</label>
+                    <input type="date" id="birthdate" required>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="btn">חשב קוד כסף</button>
+                    <button type="button" class="btn btn-secondary" id="clear-btn">נקה</button>
+                </div>
+            </form>
+
+            <div id="result" class="result" style="display: none;">
+                <h3>הקוד הנומרולוגי שלכם:</h3>
+                <div id="code-display" class="code-display"></div>
+            </div>
+
+            <div id="payment-section" class="payment-section" style="display: none;">
+                <h3>גישה לפירוש המלא</h3>
+                <p>קריאה מעודנת ומדויקת לקוד האישי שלכם</p>
+                <div class="price-tag">
+                    <span class="old-price">₪89</span>
+                    <span class="discount">58% הנחה!</span>
+                    <strong>₪36.9</strong>
+                </div>
+                <button id="payment-btn" class="btn">לפתיחה מלאה</button>
+            </div>
+        </div>
+
+        <div id="interpretations" class="interpretations">
+            <!-- פירוש מספר 1 -->
+            <div class="interpretation-card" data-number="1">
+                <div class="interpretation-header">
+                    <span class="interpretation-icon">👑</span>
+                    <h3 class="interpretation-title">ספרה 1 - המנהיג</h3>
+                </div>
+                <div class="interpretation-content">
+                    <div class="main-description">
+                        <p><strong>מהות האנרגיה:</strong> עצמאות, יוזמה, הובלה ופריצה קדימה. זהו מספר של התחלה חדשה, של כוח רצון ושל אומץ לעמוד ראשון בשורה. האנשים עם "1" נועדו להיות מובילים, לא לחכות שיגידו להם מה לעשות, אלא ליזום, ליצור ולתפוס את המקום שלהם בעולם.</p>
+                    </div>
+
+                    <div class="challenges">
+                        <h4>⚠️ חסימות ואתגרים מרכזיים:</h4>
+                        <ul>
+                            <li><strong>פחד מאחריות</strong> - רצון להישאר באזור הנוחות, לא להיכנס לתפקידים שמצריכים החלטות כבדות משקל</li>
+                            <li><strong>קושי לשחרר שליטה</strong> - נטייה לרצות לעשות הכול בעצמם, במקום לסמוך על אחרים</li>
+                            <li><strong>בריחה מהובלה</strong> - להישאר "מאחורה", גם כשיש בתוכם תשוקה להוביל</li>
+                            <li><strong>היצמדות לנוחות</strong> - הישארות באזור הנוחות (Comfort Zone), שמונעת מהם לפרוץ קדימה</li>
+                        </ul>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>🎯 מוקדי תשומת לב לצמיחה:</h4>
+                        <p>על מנת להצליח, ה"1" חייב לאזור אומץ לצאת מהמוכר, לקבל החלטות גם כשאין ביטחון מלא, וללמוד לשתף פעולה עם אחרים. הצלחתו תלויה ביכולת לקחת סיכונים מחושבים ולהאמין בעצמו.</p>
+                        
+                        <h4>💼 תחומים מתאימים:</h4>
+                        <p>יזמות, פוליטיקה, ניהול פרויקטים, חדשנות טכנולוגית, תפקידי הובלה ובכירות.</p>
+                        
+                        <h4>🔑 המפתח להצלחה:</h4>
+                        <ul>
+                            <li>לאזור אומץ ולצאת מאזור הנוחות</li>
+                            <li>לקבל החלטות גם ללא ביטחון מוחלט</li>
+                            <li>ללמוד לשתף פעולה ולהאציל סמכויות</li>
+                            <li>לקחת סיכונים מחושבים ולהאמין בעצמכם</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פירוש מספר 2 -->
+            <div class="interpretation-card" data-number="2">
+                <div class="interpretation-header">
+                    <span class="interpretation-icon">🎤</span>
+                    <h3 class="interpretation-title">ספרה 2 - הדובר</h3>
+                </div>
+                <div class="interpretation-content">
+                    <div class="main-description">
+                        <p><strong>מהות האנרגיה:</strong> אנרגיה של דיאלוג, יחסים והרמוניה. הספרה 2 מביאה יכולת רגשית עמוקה, רגישות לאחר, וחכמה תקשורתית. היא מסמלת שותפות – לדעת לפעול עם אחרים ולא לבד. אנשי הספרה 2 נולדו להיות גשר בין עולמות, להביא הבנה והרמוניה למקומות של מתח ופילוג.</p>
+                    </div>
+
+                    <div class="challenges">
+                        <h4>⚠️ חסימות ואתגרים מרכזיים:</h4>
+                        <ul>
+                            <li><strong>פחד במה</strong> - פחד להיחשף מול אנשים, למרות שהקול שלהם נועד להישמע</li>
+                            <li><strong>ריצוי יתר</strong> - ויתור על עצמם ועל האמת הפנימית כדי לשמור על שלום חיצוני</li>
+                            <li><strong>חוסר יושר פנימי</strong> - שתיקה במקום שצריך לדבר, או דיבור מיותר (רכילות)</li>
+                            <li><strong>תלות רגשית</strong> - צורך מוגזם באישור חיצוני ובקבלה מאחרים</li>
+                        </ul>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>🎯 מוקדי תשומת לב לצמיחה:</h4>
+                        <p>על ה"2" ללמוד לבטא את הקול הפנימי באומץ, לא לפחד לעמוד על שלהם, ולהפוך את המתנה של התקשורת לכלי פרנסה והגשמה. הכוח האמיתי שלהם נמצא ביכולת לחבר בין לבבות ולהביא ריפוי דרך המילה.</p>
+                        
+                        <h4>💼 תחומים מתאימים:</h4>
+                        <p>הוראה, ייעוץ זוגי, דיפלומטיה, תקשורת, הנחיית קבוצות, מוזיקה ושירה, טיפול רגשי, מדיאציה.</p>
+                        
+                        <h4>🔑 המפתח להצלחה:</h4>
+                        <ul>
+                            <li>לבטא את הקול הפנימי באומץ ובאותנטיות</li>
+                            <li>לעמוד על האמת שלכם גם כשזה לא נוח</li>
+                            <li>לפתח ביטחון עצמי שלא תלוי באישור חיצוני</li>
+                            <li>להפוך את כישורי התקשורת למקור פרנסה</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פירוש מספר 3 -->
+            <div class="interpretation-card" data-number="3">
+                <div class="interpretation-header">
+                    <span class="interpretation-icon">🎨</span>
+                    <h3 class="interpretation-title">ספרה 3 - היוצר</h3>
+                </div>
+                <div class="interpretation-content">
+                    <div class="main-description">
+                        <p><strong>מהות האנרגיה:</strong> שמחת חיים, יצירתיות, ביטוי אישי. ה"3" מביא קסם טבעי, אנרגיה של יופי ואסתטיקה ויכולת להפוך רעיון פשוט למשהו זוהר ומושך. אנשי הספרה 3 נולדו להביא צבע ושמחה לעולם, להפוך את הרגיל לחגיגי ואת הפשוט למיוחד.</p>
+                    </div>
+
+                    <div class="challenges">
+                        <h4>⚠️ חסימות ואתגרים מרכזיים:</h4>
+                        <ul>
+                            <li><strong>חיים בקיצוניות</strong> - הזנחת המשפחה לטובת הקריירה או הקרבה עצמית מוחלטת לטובת הבית</li>
+                            <li><strong>פחד מאחריות זוגית או הורית</strong> - הימנעות ממחויבות עמוקה לטובת חופש יצירתי</li>
+                            <li><strong>תלות באחרים</strong> - הישענות רגשית או כלכלית שמחלישה את העצמאות</li>
+                            <li><strong>פיזור יצירתי</strong> - התחלת פרויקטים רבים בלי להשלים אותם</li>
+                        </ul>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>🎯 מוקדי תשומת לב לצמיחה:</h4>
+                        <p>ה"3" צריך לטפח יצירתיות תוך שמירה על איזון פנימי. ככל שהם מבטאים את עצמם בצורה צבעונית ואותנטית – כך יגדל השפע. החדשנות והיופי שלהם הם המפתח להצלחה כלכלית.</p>
+                        
+                        <h4>💼 תחומים מתאימים:</h4>
+                        <p>אומנות, משחק, בלוגינג, עיצוב, סטיילינג, עבודה עם נשים, כתיבה יוצרת, אופנה, פרסום יצירתי.</p>
+                        
+                        <h4>🔑 המפתח להצלחה:</h4>
+                        <ul>
+                            <li>לשמור על איזון בין יצירתיות למחויבויות אישיות</li>
+                            <li>להביא פרויקטים יצירתיים לסיום והשלמה</li>
+                            <li>לפתח עצמאות כלכלית דרך הכישרונות היצירתיים</li>
+                            <li>לבטא את הייחודיות והאותנטיות האישית</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פירוש מספר 4 -->
+            <div class="interpretation-card" data-number="4">
+                <div class="interpretation-header">
+                    <span class="interpretation-icon">🏗️</span>
+                    <h3 class="interpretation-title">ספרה 4 - הבונה</h3>
+                </div>
+                <div class="interpretation-content">
+                    <div class="main-description">
+                        <p><strong>מהות האנרגיה:</strong> יסוד, עבודה, משמעת ויציבות. זהו מספר של יסודות חזקים – קרקע מוצקה שעליה אפשר להניח בניין יציב. אנשי הספרה 4 נולדו לבנות מבנים שיחזיקו לדורות, ליצור יציבות ולהביא לעולם סדר ומוצקות.</p>
+                    </div>
+
+                    <div class="challenges">
+                        <h4>⚠️ חסימות ואתגרים מרכזיים:</h4>
+                        <ul>
+                            <li><strong>עצלנות ודחיינות</strong> - חוסר רצון להשקיע לטווח ארוך, העדפת נוחות מיידית</li>
+                            <li><strong>חיפוש קיצורי דרך</strong> - חיפוש "כסף מהיר" או הצלחה מיידית במקום בנייה הדרגתית</li>
+                            <li><strong>חוסר סדר</strong> - כאוס פנימי וחיצוני שמוביל לחוסר התקדמות</li>
+                            <li><strong>פחד מהתחייבות ארוכת טווח</strong> - חשש ממשימות שדורשות עבודה מתמשכת</li>
+                        </ul>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>🎯 מוקדי תשומת לב לצמיחה:</h4>
+                        <p>על ה"4" לאמץ סדר ומשמעת, לבנות תוכניות ארוכות טווח, ולהבין שהעבודה המתמשכת היא המפתח להצלחה אמיתית. הכוח שלהם נמצא ביכולת לבנות דבר מה איתן ומתמשך.</p>
+                        
+                        <h4>💼 תחומים מתאימים:</h4>
+                        <p>ספורט, חקלאות, נדל"ן, בנייה, הנדסה, עסקים פיזיים ופרויקטים ארוכי טווח, ייעוץ ארגוני.</p>
+                        
+                        <h4>🔑 המפתח להצלחה:</h4>
+                        <ul>
+                            <li>לפתח משמעת עצמית ושגרות בריאות</li>
+                            <li>לבנות תוכניות ארוכות טווח ולהקפיד על ביצוען</li>
+                            <li>ליצור סדר בסביבה החיצונית והפנימית</li>
+                            <li>להתמיד בעבודה גם כשהתוצאות לא מיידיות</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פירוש מספר 5 -->
+            <div class="interpretation-card" data-number="5">
+                <div class="interpretation-header">
+                    <span class="interpretation-icon">🔍</span>
+                    <h3 class="interpretation-title">ספרה 5 - החוקר</h3>
+                </div>
+                <div class="interpretation-content">
+                    <div class="main-description">
+                        <p><strong>מהות האנרגיה:</strong> חכמה, ידע וסקרנות אינסופית. ה"5" נולד לחקור, ללמוד ולגלות. יש בו אנרגיה של תלמיד נצחי ומורה טבעי. אנשי הספרה 5 נועדו להיות הגשר בין הידע לעולם, לחקור את עמקי החכמה ולחלוק אותה עם אחרים.</p>
+                    </div>
+
+                    <div class="challenges">
+                        <h4>⚠️ חסימות ואתגרים מרכזיים:</h4>
+                        <ul>
+                            <li><strong>פיזור יתר</strong> - עיסוק בהרבה תחומים בו זמנית בלי להגיע לעומק אמיתי</li>
+                            <li><strong>תסמונת המתחזה</strong> - תחושה שהם "עדיין לא יודעים מספיק" ולכן דוחים עשייה</li>
+                            <li><strong>גאווה אינטלקטואלית</strong> - נטייה לשדר עליונות שכלית, מה שעלול להרחיק אנשים</li>
+                            <li><strong>פחד מלהתחייב לתחום אחד</strong> - חשש שהתמחות תגביל את הסקרנות</li>
+                        </ul>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>🎯 מוקדי תשומת לב לצמיחה:</h4>
+                        <p>כדי להצליח, ה"5" צריך להתמקד בתחום מרכזי אחד, להעז ללמד גם בלי להיות "מושלם", ולשמור על פתיחות וענווה מול דעות שונות. הכוח שלהם נמצא ביכולת להפוך ידע מורכב לפשוט ונגיש.</p>
+                        
+                        <h4>💼 תחומים מתאימים:</h4>
+                        <p>הוראה, מחקר, פסיכולוגיה, פילוסופיה, כתיבה, מדע, חינוך, ייעוץ אסטרטגי, פיתוח אישי.</p>
+                        
+                        <h4>🔑 המפתח להצלחה:</h4>
+                        <ul>
+                            <li>להתמקד בתחום מרכזי אחד ולהגיע בו לעומק</li>
+                            <li>להתחיל ללמד ולחלוק ידע גם ללא "שלמות"</li>
+                            <li>לשמור על ענווה וסקרנות תמידית</li>
+                            <li>להפוך את התשוקה ללמידה למקור פרנסה</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פירוש מספר 6 -->
+            <div class="interpretation-card" data-number="6">
+                <div class="interpretation-header">
+                    <span class="interpretation-icon">🎭</span>
+                    <h3 class="interpretation-title">ספרה 6 - האמן</h3>
+                </div>
+                <div class="interpretation-content">
+                    <div class="main-description">
+                        <p><strong>מהות האנרגיה:</strong> יופי, אהבה והרמוניה פנימית וחיצונית. "6" קשור ליכולת לראות יופי בעולם ולטפח הרמוניה, במיוחד במערכות יחסים. אנשי הספרה 6 נולדו להיות שגרירי היופי והאהבה, לטפח יחסים עמוקים ולהביא הרמוניה למקומות של מתח.</p>
+                    </div>
+
+                    <div class="challenges">
+                        <h4>⚠️ חסימות ואתגרים מרכזיים:</h4>
+                        <ul>
+                            <li><strong>חוסר קבלה עצמית</strong> - קושי להעריך את הגוף והנפש, ביקורת עצמית קשה</li>
+                            <li><strong>קשיים בזוגיות</strong> - פחד מקרבה אמיתית או תלות רגשית לא בריאה</li>
+                            <li><strong>חוסר איזון פנימי</strong> - נטייה להרגיש "לא מספיק טובים" או מושלמים</li>
+                            <li><strong>פרפקציוניזם משתק</strong> - דרישות גבוהות מדי מעצמם ומאחרים</li>
+                        </ul>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>🎯 מוקדי תשומת לב לצמיחה:</h4>
+                        <p>לטפח זוגיות בריאה, לאהוב את עצמם ואת גופם, ולבטא את הראייה הייחודית שלהם ליופי. הכוח שלהם נמצא ביכולת ליצור הרמוניה ויופי בכל מה שהם נוגעים בו.</p>
+                        
+                        <h4>💼 תחומים מתאימים:</h4>
+                        <p>עיצוב אופנה, צילום, אומנות פלסטית, עיצוב פנים, טיפול זוגי, מוזיקה, תרפיה באמנות, קוסמטיקה.</p>
+                        
+                        <h4>🔑 המפתח להצלחה:</h4>
+                        <ul>
+                            <li>לפתח אהבה עצמית ואמיתית ולקבל את עצמם</li>
+                            <li>לבנות מערכות יחסים בריאות ומעמיקות</li>
+                            <li>לבטא את הראייה האסתטית הייחודית שלהם</li>
+                            <li>למצוא איזון בין נתינה לקבלה ביחסים</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פירוש מספר 7 -->
+            <div class="interpretation-card" data-number="7">
+                <div class="interpretation-header">
+                    <span class="interpretation-icon">🔮</span>
+                    <h3 class="interpretation-title">ספרה 7 - הלוחם</h3>
+                </div>
+                <div class="interpretation-content">
+                    <div class="main-description">
+                        <p><strong>הכישרון הראשי שלכם:</strong> כישוף כלכלי ומעבר לממד אחר של הכנסות. אתם אנשים שיכולים לקבל הכנסות מקריאת קלפים, אסטרולוגיה, נומרולוגיה, פסיכולוגיה, כל מה שקשור למדע הנשמה ולעזרה לאנשים, ללבוש כחול וללמוד וללמד את הכל בעולם הזה.</p>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>💎 הכישרונות והחוזקות שלכם:</h4>
+                        <ul>
+                            <li><strong>מדעי הנשמה</strong> - כישרון באסטרולוגיה, נומרולוגיה, קריאת קלפים</li>
+                            <li><strong>פסיכולוגיה ועזרה לאנשים</strong> - יכולת להבין אנשים ולעזור להם</li>
+                            <li><strong>לימוד והוראה</strong> - כישרון בלימוד דברים חדשים ובהוראה</li>
+                            <li><strong>אינטואיציה חזקה</strong> - יכולת להרגיש ולהבין מעבר לחומרי</li>
+                        </ul>
+                        <p><strong>מקצועות מתאימים:</strong> אסטרולוגים, נומרולוגים, פסיכולוגים, מורים, כל מה שקשור למדעי הנשמה</p>
+                    </div>
+
+                    <div class="challenges">
+                        <h4>⚠️ הפחדים והחסמים העיקריים:</h4>
+                        <ul>
+                            <li><strong>פחד מלימוד</strong> - התנגדות ללמוד דברים חדשים</li>
+                            <li><strong>חוסר אמונה ביכולות</strong> - ספק ביכולות הרוחניות שלכם</li>
+                            <li><strong>התנגדות לעזור לאחרים</strong> - פחד מלתת ייעוץ ועזרה</li>
+                            <li><strong>פחד מלהיות שונים</strong> - חשש מלעסוק בדברים "לא רגילים"</li>
+                        </ul>
+                        <p><strong>המפתח להצלחה:</strong> ללמוד ולהורות מדעי נשמה, לפתח את האינטואיציה ולהתחיל לעזור לאחרים</p>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>🎯 מה מחזק את האנרגיה שלכם:</h4>
+                        <ul>
+                            <li><strong>לימוד מתמיד</strong> - רכישת ידע חדש בכל תחום</li>
+                            <li><strong>צבע כחול</strong> - ללבוש ולהקיף עצמכם בכחול</li>
+                            <li><strong>מיים</strong> - זמן ליד מים, אמבטיות, ים</li>
+                            <li><strong>מדיטציה ורוחניות</strong> - פיתוח הצד הרוחני והאינטואיטיבי</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פירוש מספר 8 -->
+            <div class="interpretation-card" data-number="8">
+                <div class="interpretation-header">
+                    <span class="interpretation-icon">♻️</span>
+                    <h3 class="interpretation-title">מספר 8 - המחזור הכלכלי</h3>
+                </div>
+                <div class="interpretation-content">
+                    <div class="main-description">
+                        <p><strong>הכישרון הראשי שלכם:</strong> מחזור כלכלי. אתם אנשים שנמצאים במחזור כלכלי מתמיד - פעם יש לכם הכל ופעם כלום. אבל בסופו של דבר, אתם תמיד מצליחים להחזיר את עצמכם למעמד כלכלי טוב. המספר 8 זה כמו סימן אינסוף - מחזור שלא נגמר.</p>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>💎 הכישרונות והחוזקות שלכם:</h4>
+                        <ul>
+                            <li><strong>יכולת התאוששות</strong> - יכולת להתאושש מכל קריסה כלכלית</li>
+                            <li><strong>עמידות מנטלית</strong> - יכולת להתמודד עם עליות וירידות</li>
+                            <li><strong>ניהול משברים</strong> - כישרון לנהל מצבים כלכליים קשים</li>
+                            <li><strong>אופטימיות</strong> - אמונה שהכל יסתדר בסוף</li>
+                        </ul>
+                        <p><strong>מקצועות מתאימים:</strong> ניהול משברים, כל עבודה שדורשת התמודדות עם תנודות</p>
+                    </div>
+
+                    <div class="challenges">
+                        <h4>⚠️ הפחדים והחסמים העיקריים:</h4>
+                        <ul>
+                            <li><strong>פחד מהמחזור</strong> - ניסיון להימנע מהעליות והירידות הטבעיות</li>
+                            <li><strong>חוסר סבלנות</strong> - רצון לקבע את המצב הכלכלי הטוב</li>
+                            <li><strong>פחד מירידות</strong> - חשש מאובדן כלכלי</li>
+                            <li><strong>לא חיסוך בזמנים טובים</strong> - הוצאת כל הכסף כשיש הרבה</li>
+                        </ul>
+                        <p><strong>המפתח להצלחה:</strong> לקבל את המחזור, לחסוך בזמנים טובים ולהאמין שהכל חוזר</p>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>🎯 מה מחזק את האנרגיה שלכם:</h4>
+                        <ul>
+                            <li><strong>קבלת המחזור</strong> - הבנה שעליות וירידות זה טבעי</li>
+                            <li><strong>חיסכון חכם</strong> - שמירת כסף לזמנים קשים</li>
+                            <li><strong>תמיכה חברתית</strong> - קשרים חזקים שעוזרים בזמנים קשים</li>
+                            <li><strong>גמישות מנטלית</strong> - יכולת להסתגל לשינויים</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פירוש מספר 9 -->
+            <div class="interpretation-card" data-number="9">
+                <div class="interpretation-header">
+                    <span class="interpretation-icon">�</span>
+                    <h3 class="interpretation-title">מספר 9 - מתנות מהיקום</h3>
+                </div>
+                <div class="interpretation-content">
+                    <div class="main-description">
+                        <p><strong>הכישרון הראשי שלכם:</strong> מתנות מהיקום. אתם אנשים שמקבלים מתנות, מענקים, בונוסים, זוכים בהגרלות ופשוט מקבלים הכל בחינם. זה קורה כשאתם לא רוצים ולא חושבים על כסף. זה המספר הכי קסום מבחינה כלכלית.</p>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>💎 הכישרונות והחוזקות שלכם:</h4>
+                        <ul>
+                            <li><strong>מזל מיוחד</strong> - נטייה לזכות במתנות והגרלות</li>
+                            <li><strong>משיכת שפע</strong> - קבלת כסף ללא מאמץ מיוחד</li>
+                            <li><strong>אנרגיה חיובית</strong> - משיכת דברים טובים לחיים</li>
+                            <li><strong>גישה לא חומרנית</strong> - אי-תלות בכסף מביאה לכסף</li>
+                        </ul>
+                        <p><strong>מקצועות מתאימים:</strong> כל מקצוע שאוהבים, ההצלחה תגיע כשלא דואגים לכסף</p>
+                    </div>
+
+                    <div class="challenges">
+                        <h4>⚠️ הפחדים והחסמים העיקריים:</h4>
+                        <ul>
+                            <li><strong>דאגה לכסף</strong> - חשיבה יתר על כסף מקלקלת את הקסם</li>
+                            <li><strong>רצוי בכוח</strong> - ניסיון לשלוט על ההכנסות</li>
+                            <li><strong>קמצנות</strong> - פחד לתת ולחלוק עם אחרים</li>
+                            <li><strong>חוסר אמונה</strong> - ספק ביכולת לקבל מתנות מהיקום</li>
+                        </ul>
+                        <p><strong>המפתח להצלחה:</strong> לעזוב את הדאגה לכסף, לתת לאחרים ולהאמין שהיקום דואג לכם</p>
+                    </div>
+
+                    <div class="strengths">
+                        <h4>🎯 מה מחזק את האנרגיה שלכם:</h4>
+                        <ul>
+                            <li><strong>נתינה לאחרים</strong> - תרומות וחלוקת מתנות</li>
+                            <li><strong>גישה רוחנית</strong> - פיתוח הצד הרוחני והלא-חומרני</li>
+                            <li><strong>אמונה ביקום</strong> - ביטחון שהיקום דואג לכם</li>
+                            <li><strong>עשייה מאהבה</strong> - עבודה במה שאוהבים ולא רק בשביל כסף</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- הסבר על משמעות החזרות בקוד -->
+        <div class="explanation-section">
+            <div class="explanation-card">
+                <div class="explanation-header">
+                    <span class="explanation-icon">🔄</span>
+                    <h3>משמעות החזרות בקוד העושר</h3>
+                </div>
+                <div class="explanation-content">
+                    <div class="explanation-text">
+                        <p><strong>קוד העושר</strong> הוא מפתח להבנת המבנה הפנימי של האדם, היכולות הטבעיות שלו והחסימות שעוצרות אותו מלהתקדם אל עבר שפע והגשמה. כל ספרה מייצגת אנרגיה ייחודית, מתנה מולדת אך גם מבחן.</p>
+                        
+                        <div class="key-insight">
+                            <h4>💫 כאשר ספרה מופיעה פעמיים או יותר:</h4>
+                            <p>מדובר באנרגיה דומיננטית - זוהי מתנה חזקה, אך גם מבחן. הנשמה כבר מכירה את התחום הזה, ולכן קיימת נטייה להיתקע בדפוסים מוכרים במקום לצמוח ולהתפתח.</p>
+                        </div>
+
+                        <div class="key-insight">
+                            <h4>🌈 כאשר בקוד יש מגוון רחב של ספרות:</h4>
+                            <p>המשמעות היא שיעורים מגוונים יותר - חיים שמבקשים איזון רחב, עבודה בכמה תחומים במקביל ויכולת להתפתח בכמה מישורים בו זמנית.</p>
+                        </div>
+
+                        <div class="important-note">
+                            <p><strong>חשוב לזכור:</strong> ככל שנבין את העומק של כל ספרה, נוכל לזהות את הדפוסים המגבילים, להאיר על המקומות הרגישים ולכוון את האנרגיה שלנו כך שתעבוד לטובתנו ולא נגדנו.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // פונקציות חישוב נומרולוגי
+        function sumDigits(num) {
+            return String(num).split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+        }
+
+        function digitalRoot(num) {
+            while (num > 9) {
+                num = sumDigits(num);
+            }
+            return num;
+        }
+
+        function calculateMoneyCode(birthDate) {
+            const date = new Date(birthDate);
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+
+            const dayRoot = digitalRoot(day);
+            const monthRoot = digitalRoot(month);
+            const yearRoot = digitalRoot(year);
+
+            return {
+                day: dayRoot,
+                month: monthRoot,
+                year: yearRoot,
+                total: digitalRoot(dayRoot + monthRoot + yearRoot)
+            };
+        }
+
+        // פונקציות UI
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('error').style.display = 'none';
+        }
+
+        function showResult(code) {
+            const resultDiv = document.getElementById('result');
+            const codeDisplay = document.getElementById('code-display');
+
+            codeDisplay.innerHTML = `
+                <span class="number-btn" data-number="${code.day}">${code.day}</span>
+                <span class="number-btn" data-number="${code.month}">${code.month}</span>
+                <span class="number-btn" data-number="${code.year}">${code.year}</span>
+                <span class="number-btn" data-number="${code.total}">${code.total}</span>
+            `;
+
+            resultDiv.style.display = 'block';
+
+            // הוסף event listeners לכפתורי המספרים
+            document.querySelectorAll('.number-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const number = parseInt(btn.dataset.number);
+                    showInterpretation(number);
+                });
+            });
+        }
+
+    function showInterpretation(number) {
+            // הסתר את כל הפירושים
+            document.querySelectorAll('.interpretation-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // הצג את הפירוש הרלוונטי
+            const targetCard = document.querySelector(`.interpretation-card[data-number="${number}"]`);
+            if (targetCard) {
+                targetCard.classList.add('active');
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function showPaymentSection() {
+            document.getElementById('payment-section').style.display = 'block';
+        }
+
+        function showPaidInterpretationsForCode(code) {
+            if (!code) return;
+            const needed = new Set([code.day, code.month, code.year, code.total].map(n => parseInt(n)));
+            // Hide all first
+            document.querySelectorAll('.interpretation-card').forEach(card => card.classList.remove('active'));
+            // Show only needed
+            needed.forEach(n => {
+                const card = document.querySelector(`.interpretation-card[data-number="${n}"]`);
+                if (card) card.classList.add('active');
+            });
+        }
+
+        // event listeners
+        document.getElementById('calculator-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            hideError();
+
+            const birthDate = document.getElementById('birthdate').value;
+            if (!birthDate) {
+                showError('אנא בחר תאריך לידה');
+                return;
+            }
+
+            try {
+                const code = calculateMoneyCode(birthDate);
+                // Persist code for post-payment return
+                try { sessionStorage.setItem('moneyCode', JSON.stringify(code)); } catch(e) {}
+                showResult(code);
+                showPaymentSection();
+            } catch (error) {
+                showError('שגיאה בחישוב. אנא נסה שוב.');
+            }
+        });
+
+        document.getElementById('clear-btn').addEventListener('click', function() {
+            document.getElementById('birthdate').value = '';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('payment-section').style.display = 'none';
+            hideError();
+
+            // הסתר את כל הפירושים
+            document.querySelectorAll('.interpretation-card').forEach(card => {
+                card.classList.remove('active');
+            });
+        });
+
+        document.getElementById('payment-btn').addEventListener('click', function() {
+            // שמירת הקוד לפני מעבר לתשלום
+            const resultText = document.getElementById('code-display')?.textContent || '';
+            try {
+                const stored = sessionStorage.getItem('moneyCode');
+                if (!stored) {
+                    const birthDate = document.getElementById('birthdate').value;
+                    if (birthDate) {
+                        const code = calculateMoneyCode(birthDate);
+                        sessionStorage.setItem('moneyCode', JSON.stringify(code));
+                    }
+                }
+            } catch(e) {}
+            // מעבר לעמוד התשלום
+            window.location.href = 'pay.html?return=' + encodeURIComponent('index.html');
+        });
+
+        // בדיקת חזרה מתשלום: מציגים אך ורק את 4 הספרות של הקוד שחושב
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('paid') === '1') {
+            try {
+                const raw = sessionStorage.getItem('moneyCode');
+                if (raw) {
+                    const code = JSON.parse(raw);
+                    // ודאו שהתקבלה תוצאה מוצגת
+                    showResult(code);
+                    showPaidInterpretationsForCode(code);
+                    // גלילה עדינה לסעיף הפירושים
+                    const interp = document.getElementById('interpretations');
+                    if (interp) interp.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    showError('אנא חשבו מחדש את הקוד כדי לצפות בפירוש.');
+                }
+            } catch(e) {
+                showError('קיימת בעיה בשליפת הנתונים. חשבו מחדש את הקוד.');
+            }
+        }
+
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js').catch(function(err) {
+                    console.info('SW registration failed:', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

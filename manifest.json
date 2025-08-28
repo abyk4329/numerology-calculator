@@ -1,0 +1,27 @@
+{
+  "name": "מחשבון קוד הכסף הנומרולוגי",
+  "short_name": "קוד הכסף",
+  "description": "גלו את הקוד הנומרולוגי הייחודי שלכם להצלחה כספית",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f8f9f5",
+  "theme_color": "#e7d9b6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI3NSUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y4ZjlmNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2VkZThkZSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIGZpbGw9InVybCgjZykiIHJ4PSI0MCIvPjx0ZXh0IHg9Ijk2IiB5PSIxMTQiIGZvbnQtc2l6ZT0iNzAiIGZpbGw9IiNhMDgxNWEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk3igqw8L3RleHQ+PC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI3NSUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y4ZjlmNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2VkZThkZSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9InVybCgjZykiIHJ4PSIxMDAiLz48dGV4dCB4PSIyNTYiIHk9IjMwMCIgZm9udC1zaXplPSIxMjAiIGZpbGw9IiNhMDgxNWEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk3igqw8L3RleHQ+PC9zdmc+",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "finance", "lifestyle"],
+  "lang": "he",
+  "dir": "rtl"
+}
