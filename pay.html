@@ -59,25 +59,34 @@
         }
 
         .container {
-            max-width: 600px; margin: 0 auto; padding: 20px; min-height: 100vh;
+            max-width: 650px; margin: 0 auto; padding: 20px; min-height: 100vh;
             display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2;
         }
 
         .payment-card {
-            background: linear-gradient(145deg, var(--feng-gold), rgba(247, 231, 206, 0.9));
-            border-radius: 18px; padding: 32px; box-shadow: 0 14px 30px rgba(139, 115, 85, 0.08);
-            border: 2px solid rgba(125, 162, 105, 0.2); position: relative; overflow: hidden; backdrop-filter: blur(6px);
+            background: linear-gradient(145deg, var(--feng-gold), rgba(247, 231, 206, 0.95));
+            border-radius: 20px; padding: 40px; box-shadow: 0 20px 40px rgba(139, 115, 85, 0.12);
+            border: 2px solid rgba(125, 162, 105, 0.25); position: relative; overflow: hidden; backdrop-filter: blur(8px);
             text-align: center;
         }
 
         .payment-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--warm-gold), #ecdcb9, var(--warm-gold)); border-radius: 18px 18px 0 0;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--feng-green), var(--feng-gold), var(--feng-teal), var(--feng-gold), var(--feng-green));
+            background-size: 200% 100%;
+            animation: shimmer 4s ease-in-out infinite;
+            border-radius: 20px 20px 0 0;
         }
+
         .payment-card::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(231, 217, 182, 0.25) 50%, transparent 70%);
-            animation: cardSweep 6s infinite linear; pointer-events: none;
+            background: linear-gradient(45deg, transparent 30%, rgba(231, 217, 182, 0.15) 50%, transparent 70%);
+            animation: cardSweep 8s infinite linear; pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         @keyframes cardSweep { 0% { transform: translate(-100%, -100%) rotate(45deg); } 100% { transform: translate(100%, 100%) rotate(45deg); } }
 
@@ -86,6 +95,12 @@
         @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
         h1 { color: var(--feng-brown); font-size: 1.8rem; margin-bottom: 10px; font-weight: 700; letter-spacing: 0.3px; }
         .subtitle { color: var(--feng-brown); font-size: 1rem; margin-bottom: 20px; font-weight: 500; }
+        .urgency-badge { display: inline-block; background: linear-gradient(135deg, var(--feng-green), var(--feng-teal)); color: var(--feng-gold); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(125, 162, 105, 0.3); animation: gentlePulse 3s ease-in-out infinite; }
+        @keyframes gentlePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
         .byline { margin-top: 6px; font-family: 'Great Vibes', cursive; font-size: 1.45rem; font-weight: 400; letter-spacing: 0.5px; background: linear-gradient(90deg, #d9cba7 0%, #f0e6c9 40%, #d2c08f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; filter: drop-shadow(0 0.5px 0 rgba(231,217,182,0.8)); opacity: 0.95; }
 
         .price-section { text-align: center; margin: 26px 0; padding: 22px; background: linear-gradient(145deg, var(--feng-light-brown), rgba(205, 191, 168, 0.85)); border-radius: 16px; border: 2px solid var(--feng-green); box-shadow: 0 10px 22px rgba(139, 115, 85, 0.08), inset 0 1px 0 rgba(255,255,255,0.25); position: relative; z-index: 3; }
@@ -104,7 +119,7 @@
         input[type="text"], input[type="email"] { width: 100%; padding: 15px 20px; border: 2px solid rgba(139, 115, 85, 0.3); border-radius: 15px; font-size: 1rem; background: linear-gradient(135deg, var(--feng-gold), rgba(247, 231, 206, 0.8)); transition: all 0.3s ease; font-family: inherit; color: var(--rich-brown); }
         input[type="text"]:focus, input[type="email"]:focus { outline: none; border-color: var(--feng-green); box-shadow: 0 0 0 3px rgba(125, 162, 105, 0.25), 0 4px 12px rgba(139, 115, 85, 0.08); background: var(--feng-gold); transform: translateY(-1px); }
 
-        .payment-button { width: 100%; background: linear-gradient(135deg, var(--feng-gold), var(--feng-green)); color: var(--feng-brown); padding: 20px; border: 2px solid var(--feng-teal); border-radius: 25px; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(139, 115, 85, 0.15); margin-top: 10px; text-shadow: none; position: relative; overflow: hidden; }
+        .payment-button { width: 100%; background: linear-gradient(135deg, var(--feng-gold), var(--feng-green)); color: var(--feng-brown); padding: 22px; border: 2px solid var(--feng-teal); border-radius: 25px; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(139, 115, 85, 0.15); margin-top: 15px; text-shadow: none; position: relative; overflow: hidden; text-align: center; line-height: 1.4; }
         .payment-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s; }
         .payment-button:hover::before { left: 100%; }
         .payment-button:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(139, 115, 85, 0.12); }
@@ -136,20 +151,49 @@
         <div class="payment-card">
             <div class="header">
                 <span class="lock-icon">🔒</span>
-                <h1>חוויית רכישה מוקפדת</h1>
-                <p class="subtitle">הזמנה לגילוי עומק הקוד האישי שלך - מסע רוחני של הכרה עצמית עמוקה וחיבור לאנרגיה הכספית הטבעית שלך, דרך חכמת המספרים העתיקה המשולבת בידע מודרני לפתיחת דרכי שפע והצלחה בחיים</p>
+                <div class="urgency-badge">⏰ הצעה מוגבלת בזמן - רק ₪36.9!</div>
+                <h1>פתחו את הקוד הסודי של העושר שלכם</h1>
+                <p class="subtitle">גלו את הכוח הנסתר שטמון בקוד האישי שלכם! מסע טרנספורמטיבי שיחשוף את הדפוסים הכספיים שלכם, יגלה את החוזקות הטבעיות ויפתח את דלתות השפע שמחכות לכם. הצטרפו לאלפי האנשים שכבר שינו את חייהם עם חכמת הנומרולוגיה העתיקה</p>
             </div>
 
             <div class="price-section">
                 <div class="price">₪36.9</div>
-                <div class="price-description">תשלום חד-פעמי לגישה מלאה</div>
+                <div class="price-description">השקעה חד-פעמית בחיים שלכם</div>
+                <div style="color: var(--feng-gray-brown); font-size: 0.9rem; margin-top: 8px; text-decoration: line-through;">המחיר הרגיל: ₪89</div>
+                <div style="color: var(--feng-green); font-size: 0.95rem; font-weight: 600; margin-top: 5px;">חסכו 58% עם ההנחה המיוחדת!</div>
             </div>
 
             <div class="features">
-                <div class="feature-item"><span class="feature-icon">✅</span><span>פירושים מפורטים לכל מספר בקוד הכסף שלכם</span></div>
-                <div class="feature-item"><span class="feature-icon">✅</span><span>ניתוח אישי של החוזקות והאתגרים הפיננסיים</span></div>
-                <div class="feature-item"><span class="feature-icon">✅</span><span>טיפים מעשיים להגדרת השפע וההצלחה</span></div>
-                <div class="feature-item"><span class="feature-icon">✅</span><span>גישה מידית ללא מגבלת זמן</span></div>
+                <div class="feature-item"><span class="feature-icon">🎯</span><span><strong>פירוש אישי ומעמיק</strong> - ניתוח מדויק של כל ספרה בקוד העושר שלכם עם תובנות טרנספורמטיביות</span></div>
+                <div class="feature-item"><span class="feature-icon">💡</span><span><strong>מפת דרכים להצלחה</strong> - אסטרטגיות מוכחות לפיתוח הכישרונות הטבעיים והתגברות על חסמים</span></div>
+                <div class="feature-item"><span class="feature-icon">🔮</span><span><strong>חיזוי עתידי</strong> - תובנות על ההזדמנויות הכספיות שמחכות לכם בדרך</span></div>
+                <div class="feature-item"><span class="feature-icon">⚡</span><span><strong>גישה מיידית</strong> - קבלו את הדוח המלא תוך דקות ספורות במייל</span></div>
+                <div class="feature-item"><span class="feature-icon">🔒</span><span><strong>גישה לכל החיים</strong> - חזרו וקראו את הפירוש בכל עת ללא עלות נוספת</span></div>
+            </div>
+
+            <!-- Trust & Guarantees Section -->
+            <div style="background: linear-gradient(145deg, rgba(247, 231, 206, 0.1), rgba(205, 191, 168, 0.2)); border-radius: 16px; padding: 20px; margin: 25px 0; border: 1px solid rgba(125, 162, 105, 0.2);">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px;">
+                    <span style="font-size: 2rem;">🛡️</span>
+                    <div style="text-align: center;">
+                        <div style="color: var(--feng-brown); font-weight: 700; font-size: 1.1rem;">הבטחת שביעות רצון מלאה</div>
+                        <div style="color: var(--feng-gray-brown); font-size: 0.9rem;">או החזר כספי מלא תוך 30 יום</div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-around; text-align: center; margin-top: 15px;">
+                    <div>
+                        <span style="font-size: 1.5rem;">🔐</span>
+                        <div style="color: var(--feng-brown); font-size: 0.8rem; font-weight: 600;">SSL מוצפן</div>
+                    </div>
+                    <div>
+                        <span style="font-size: 1.5rem;">💳</span>
+                        <div style="color: var(--feng-brown); font-size: 0.8rem; font-weight: 600;">תשלום מאובטח</div>
+                    </div>
+                    <div>
+                        <span style="font-size: 1.5rem;">📧</span>
+                        <div style="color: var(--feng-brown); font-size: 0.8rem; font-weight: 600;">תמיכה 24/7</div>
+                    </div>
+                </div>
             </div>
 
             <form class="payment-form" id="payment-form">
@@ -172,13 +216,31 @@
                     </div>
                 </div>
 
-                <button type="submit" class="payment-button">💳 השלימו תשלום - ₪36.9</button>
+                <button type="submit" class="payment-button">
+                    <span style="font-size: 1.3rem;">�</span>
+                    כן, אני רוצה את הקוד הסודי שלי עכשיו!
+                    <br><small style="font-size: 0.8rem; opacity: 0.9;">₪36.9 - תשלום מאובטח</small>
+                </button>
 
-                <div class="demo-notice"><strong>💡 דמו:</strong> הנתונים כאן מולאו לדוגמה - פשוט לחצו על כפתור התשלום לסימולציה</div>
+                <div class="demo-notice">
+                    <strong>🎯 דמו חי:</strong> הנתונים מולאו לדוגמה - לחצו על הכפתור ותראו איך זה עובד!
+                    <br><small style="color: var(--feng-teal); font-weight: 600;">(התשלום לא יבוצע במצב דמו)</small>
+                </div>
             </form>
 
-            <div class="security-info">🔐 התשלום מאובטח ומוצפן | המידע שלכם מוגן במלואו</div>
-            <a href="javascript:history.back()" class="back-link">⬅️ חזרה למחשבון</a>
+            <div class="security-info">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                    <span style="font-size: 1.2rem;">🔐</span>
+                    <strong style="color: var(--feng-brown);">התשלום מאובטח ב-100%</strong>
+                </div>
+                <div style="font-size: 0.85rem; line-height: 1.4;">
+                    המידע שלכם מוצפן ברמה בנקאית | PCI DSS compliant | תשלום מאובטח דרך שער התשלומים המוביל | פרטיות מלאה מובטחת
+                </div>
+            </div>
+            <a href="javascript:history.back()" class="back-link">
+                <span style="margin-left: 8px;">⬅️</span>
+                חזרה למחשבון - אפשר לחזור מתי שתרצו
+            </a>
         </div>
     </div>
 
@@ -203,19 +265,34 @@
         document.getElementById('payment-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const button = document.querySelector('.payment-button');
-            const originalText = button.textContent;
-            button.textContent = '⏳ מעבד תשלום...';
+                        const originalText = button.innerHTML;
+            button.innerHTML = '<span style="font-size: 1.3rem;">⏳</span><br>מעבד תשלום מאובטח...';
             button.disabled = true;
+            button.style.background = 'linear-gradient(135deg, var(--feng-teal), var(--feng-green))';
+
             setTimeout(() => {
-                button.textContent = '✅ תשלום הושלם בהצלחה!';
+                button.innerHTML = '<span style="font-size: 1.3rem;">✅</span><br>תשלום הושלם בהצלחה!';
                 button.style.background = 'linear-gradient(135deg, var(--feng-green), var(--feng-teal))';
+
+                // Add success message
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = `
+                    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                    background: linear-gradient(135deg, var(--feng-green), var(--feng-teal));
+                    color: var(--feng-gold); padding: 15px 25px; border-radius: 25px;
+                    font-weight: 700; box-shadow: 0 8px 25px rgba(125, 162, 105, 0.4);
+                    z-index: 10000; animation: slideDown 0.5s ease-out;
+                `;
+                successMsg.innerHTML = '🎉 ברוכים הבאים! הדוח שלכם בדרך למייל';
+                document.body.appendChild(successMsg);
+
                 setTimeout(() => {
                     const params = new URLSearchParams(window.location.search);
                     const returnUrl = params.get('return') || 'index.html';
                     const decodedUrl = decodeURIComponent(returnUrl);
                     const separator = decodedUrl.includes('?') ? '&' : '?';
                     window.location.href = decodedUrl + separator + 'paid=1';
-                }, 2000);
+                }, 2500);
             }, 3000);
         });
     </script>
