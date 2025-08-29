@@ -1,21 +1,21 @@
 {
-  "name": "מחשבון קוד הכסף הנומרולוגי",
-  "short_name": "קוד הכסף",
-  "description": "גלו את הקוד הנומרולוגי הייחודי שלכם להצלחה כספית",
+  "name": "מחשבון קוד הכסף - Awakening By Ksenia",
+  "short_name": "Awakening",
+  "description": "גלו את הקוד העושר הייחודי שלכם",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#f8f9f5",
-  "theme_color": "#e7d9b6",
+  "background_color": "#F8F6F2",
+  "theme_color": "#D4AF37",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI3NSUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y4ZjlmNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2VkZThkZSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIGZpbGw9InVybCgjZykiIHJ4PSI0MCIvPjx0ZXh0IHg9Ijk2IiB5PSIxMTQiIGZvbnQtc2l6ZT0iNzAiIGZpbGw9IiNhMDgxNWEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk3igqw8L3RleHQ+PC9zdmc+",
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnb2xkR3JhZGllbnQiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0Y3RTk4RSIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjRDRBRjM3Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjQjE5MjNEIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iODgiIGZpbGw9InVybCgjZ29sZEdyYWRpZW50KSIgZmlsdGVyPSJkcm9wLXNoYWRvdyg0cHggNHB4IDhweCByZ2JhKDAsMCwwLDAuMikpIi8+PC9zdmc+",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     },
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iNTAlIiBjeT0iNTAlIiByPSI3NSUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y4ZjlmNSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2VkZThkZSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9InVybCgjZykiIHJ4PSIxMDAiLz48dGV4dCB4PSIyNTYiIHk9IjMwMCIgZm9udC1zaXplPSIxMjAiIGZpbGw9IiNhMDgxNWEiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk3igqw8L3RleHQ+PC9zdmc+",
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJnb2xkR3JhZGllbnQiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0Y3RTk4RSIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjRDRBRjM3Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjQjE5MjNEIi8+PC9yYWRpYWxHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyMzAiIGZpbGw9InVybCgjZ29sZEdyYWRpZW50KSIgZmlsdGVyPSJkcm9wLXNoYWRvdygxMHB4IDEwcHggMjBweCByZ2JhKDAsMCwwLDAuMykpIi8+PC9zdmc+",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"

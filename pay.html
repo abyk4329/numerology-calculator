@@ -9,14 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --desert-rock: #8C7466; /* RGB: 140, 116, 102 - deepest brown */
-            --warm-gold: #A37E66; /* RGB: 163, 126, 102 - warm bronze */
-            --soft-sandstone: #E2DDD4; /* RGB: 226, 221, 212 - light beige */
-            --feather-white: #E8E3DD; /* RGB: 232, 227, 221 - warm white */
-            --rich-brown: #3f2e20; /* Deep soft brown */
+            --desert-rock: #8C7466; 
+            --warm-gold: #D4AF37; /* Rich gold */
+            --soft-sandstone: #F2EFEA; /* Brighter light beige */
+            --feather-white: #F8F6F2; /* Brighter warm white */
+            --rich-brown: #3f2e20; 
             --success-green: #2e7d4f;
             --gentle-red: #c75b4a;
-            --cream-beige: #BDA896; /* RGB: 189, 168, 150 - warm medium brown */
+            --cream-beige: #D4C4B0; /* Lighter warm medium brown */
+            --elegant-gold: #DAA520; /* Elegant gold */
+            --gold-light: #F7E98E; /* Bright gold accent */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,9 +50,10 @@
         }
 
         .payment-card {
-            background: linear-gradient(145deg, var(--feather-white), rgba(237, 232, 222, 0.9));
+            background: linear-gradient(145deg, var(--feather-white), rgba(248, 246, 242, 0.9));
             border-radius: 18px; padding: 32px; box-shadow: 0 14px 30px rgba(63, 46, 32, 0.08);
-            border: 1px solid rgba(231, 217, 182, 0.7); position: relative; overflow: hidden; backdrop-filter: blur(6px);
+            border: 1px solid rgba(212, 175, 55, 0.2); position: relative; overflow: hidden; backdrop-filter: blur(6px);
+            text-align: center;
         }
 
         .payment-card::before {
@@ -198,5 +201,10 @@
             }, 3000);
         });
     </script>
+
+    <!-- Signature -->
+    <div style="text-align: center; margin-top: 30px; padding: 20px;">
+        <img src="חתימההה.png" alt="Awakening By Ksenia" style="height: 120px; width: auto; opacity: 0.95; filter: drop-shadow(0 2px 6px rgba(163, 126, 102, 0.4)) sepia(0.3) hue-rotate(15deg) saturate(1.4) brightness(1.1);">
+    </div>
 </body>
 </html>

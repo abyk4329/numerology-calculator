@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מחשבון קוד הכסף הנומרולוגי</title>
+    <title>מחשבון קוד הכסף - Awakening By Ksenia</title>
     <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Feng Shui palette - matching compass design */
+            /* Bright elegant palette - warm golds and creams */
             --desert-rock: #8C7466; /* RGB: 140, 116, 102 - deepest brown */
-            --soft-sandstone: #E2DDD4; /* RGB: 226, 221, 212 - light beige */
-            --creamed-oat: #E2DDD4; /* alias for consistency */
-            --porcelain-mist: #BDA896; /* RGB: 189, 168, 150 - warm medium brown */
-            --feather-white: #E8E3DD; /* RGB: 232, 227, 221 - warm white */
-            --warm-gold: #A37E66; /* RGB: 163, 126, 102 - warm bronze */
-            --gold-light: #E2DDD4; /* light beige for accents */
+            --soft-sandstone: #F2EFEA; /* Brighter light beige */
+            --creamed-oat: #F2EFEA; /* alias for consistency */
+            --porcelain-mist: #D4C4B0; /* Lighter warm medium brown */
+            --feather-white: #F8F6F2; /* Brighter warm white */
+            --warm-gold: #D4AF37; /* Rich gold */
+            --gold-light: #F7E98E; /* Bright gold accent */
+            --elegant-gold: #DAA520; /* Elegant gold for code display */
             --text: #3f2e20; /* Deep soft brown - keeping for readability */
             --success: #2e7d4f;
             --error: #c75b4a;
@@ -90,21 +91,22 @@
 
         .signature-image {
             margin-top: 6px;
-            height: 80px;
+            height: 120px;
             width: auto;
             opacity: 0.95;
-            filter: drop-shadow(0 0.5px 0 rgba(231,217,182,0.8));
+            filter: drop-shadow(0 2px 6px rgba(163, 126, 102, 0.4)) sepia(0.3) hue-rotate(15deg) saturate(1.4) brightness(1.1);
         }
 
         .card {
-            background: linear-gradient(145deg, var(--feather-white), rgba(237, 232, 222, 0.8));
+            background: linear-gradient(145deg, var(--feather-white), rgba(248, 246, 242, 0.9));
             border-radius: 18px;
             padding: 26px;
             box-shadow: 0 10px 24px rgba(63, 46, 32, 0.07);
-            border: 1px solid rgba(231, 217, 182, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             margin-bottom: 26px;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .card::before {
@@ -145,13 +147,24 @@
             background: var(--feather-white);
             transition: all 0.3s ease;
             font-family: inherit;
+            color: var(--text);
         }
 
         .form-group input:focus {
             outline: none;
             border-color: var(--warm-gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-            transform: translateY(-1px);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            background: var(--feather-white);
+        }
+
+        /* Custom date input styling */
+        .form-group input[type="date"] {
+            color: var(--text);
+        }
+
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: sepia(1) hue-rotate(35deg) saturate(1.5) brightness(0.8);
+            cursor: pointer;
         }
 
         .btn {
@@ -211,7 +224,26 @@
             font-weight: 700;
         }
 
-    .code-display { font-size: 1.5rem; font-weight: 700; color: var(--desert-rock); letter-spacing: 5px; margin: 20px 0; direction: ltr; }
+    .code-display { 
+        font-size: 2.5rem; 
+        font-weight: 300; 
+        color: var(--elegant-gold); 
+        letter-spacing: 8px; 
+        margin: 30px 0; 
+        direction: ltr; 
+        text-align: center;
+        background: linear-gradient(135deg, var(--warm-gold), var(--gold-light));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+        font-family: 'Assistant', sans-serif;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: rgba(248, 246, 242, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+    }
 
         .number-btn {
             display: inline-block;
@@ -550,7 +582,7 @@
     <div class="container">
         <div class="header">
             <h1>מחשבון קוד הכסף</h1>
-            <p>גלו את הקוד הנומרולוגי היחודי שלכם</p>
+            <p>גלו את הקוד העושר היחודי שלכם</p>
             <img src="חתימההה.png" alt="Ksenia's Signature" class="signature-image" />
         </div>
 
@@ -564,13 +596,13 @@
                 </div>
 
                 <div style="text-align: center; margin-top: 30px;">
-                    <button type="submit" class="btn">חשב קוד כסף</button>
+                    <button type="submit" class="btn">חשב</button>
                     <button type="button" class="btn btn-secondary" id="clear-btn">נקה</button>
                 </div>
             </form>
 
             <div id="result" class="result" style="display: none;">
-                <h3>הקוד הנומרולוגי שלכם:</h3>
+                <h3>הקוד שלך הוא:</h3>
                 <div id="code-display" class="code-display"></div>
             </div>
 
