@@ -10,35 +10,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* New sophisticated warm palette */
-            --cream-pearl: #F1E3D7; /* Lightest cream */
-            --warm-beige: #E8D7C6; /* Soft warm beige */
-            --sand-dune: #DDC5B0; /* Light sand */
-            --coffee-latte: #BBA18A; /* Medium brown */
-            --bronze-shade: #A48569; /* Deeper bronze */
-            --caramel-glow: #C29E7E; /* Caramel accent */
-            --ivory-mist: #EFEAE4; /* Light ivory */
-            --golden-brown: #D1BD9F; /* Golden brown */
-            --champagne: #E6D7C5; /* Champagne tone */
-            --dark-walnut: #84705C; /* Dark accent */
-            --amber-gold: #A7835A; /* Amber gold */
-            --honey-bronze: #BE9D76; /* Honey bronze */
-            --vanilla-cream: #DFCBB3; /* Vanilla cream */
-            --silk-beige: #E2D8CB; /* Silk beige */
+            /* Feng Shui Compass inspired palette */
+            --feng-green: #7da269; /* Main green accent */
+            --feng-brown: #7a3635; /* Deep brown/red */
+            --feng-bg: #b8ae98; /* Background beige */
+            --feng-gold: #f3e4c7; /* Light gold/beige */
+            --feng-teal: #009a82; /* Teal accent */
+            --feng-dark-brown: #8b4d4a; /* Dark brown */
+            --feng-light-brown: #cdbfa8; /* Light brown */
+            --feng-gray-brown: #bcb098; /* Gray brown */
             --text: #3f2e20; /* Deep soft brown - keeping for readability */
             --success: #2e7d4f;
             --error: #c75b4a;
             /* Main color aliases for consistency */
-            --desert-rock: var(--dark-walnut);
-            --soft-sandstone: var(--cream-pearl);
-            --creamed-oat: var(--ivory-mist);
-            --porcelain-mist: var(--golden-brown);
-            --feather-white: var(--ivory-mist);
-            --warm-gold: var(--amber-gold);
-            --gold-light: var(--champagne);
-            --elegant-gold: var(--honey-bronze);
+            --desert-rock: var(--feng-brown);
+            --soft-sandstone: var(--feng-bg);
+            --creamed-oat: var(--feng-gold);
+            --porcelain-mist: var(--feng-light-brown);
+            --feather-white: var(--feng-gold);
+            --warm-gold: var(--feng-green);
+            --gold-light: var(--feng-gold);
+            --elegant-gold: var(--feng-teal);
             --rich-brown: var(--text);
-            --cream-beige: var(--vanilla-cream);
+            --cream-beige: var(--feng-light-brown);
         }
 
         * {
@@ -49,7 +43,7 @@
 
         body {
             font-family: 'Assistant', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-            background: linear-gradient(160deg, var(--ivory-mist) 0%, var(--cream-pearl) 80%, var(--champagne) 100%);
+            background: linear-gradient(160deg, var(--feng-bg) 0%, var(--feng-gold) 80%, var(--feng-light-brown) 100%);
             min-height: 100vh;
             color: var(--text);
             direction: rtl;
@@ -90,7 +84,7 @@
 
         .header h1 {
             font-size: 2.4rem;
-            color: var(--desert-rock);
+            color: var(--feng-brown);
             margin-bottom: 6px;
             font-weight: 700;
             letter-spacing: 0.3px;
@@ -98,7 +92,7 @@
 
         .header p {
             font-size: 1rem;
-            color: var(--desert-rock);
+            color: var(--feng-brown);
             font-weight: 500;
             opacity: 0.9;
         }
@@ -112,11 +106,11 @@
         }
 
         .card {
-            background: linear-gradient(145deg, var(--feather-white), rgba(248, 246, 242, 0.9));
+            background: linear-gradient(145deg, var(--feng-gold), rgba(243, 228, 199, 0.9));
             border-radius: 18px;
             padding: 26px;
-            box-shadow: 0 10px 24px rgba(63, 46, 32, 0.07);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 24px rgba(122, 54, 53, 0.07);
+            border: 1px solid rgba(125, 162, 105, 0.2);
             margin-bottom: 26px;
             position: relative;
             overflow: hidden;
@@ -155,10 +149,10 @@
         .form-group input {
             width: 100%;
             padding: 15px 20px;
-            border: 2px solid var(--soft-sandstone);
+            border: 2px solid var(--feng-light-brown);
             border-radius: 15px;
             font-size: 1rem;
-            background: var(--feather-white);
+            background: var(--feng-gold);
             transition: all 0.3s ease;
             font-family: inherit;
             color: var(--text);
@@ -166,9 +160,9 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: var(--warm-gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-            background: var(--feather-white);
+            border-color: var(--feng-green);
+            box-shadow: 0 0 0 3px rgba(125, 162, 105, 0.1);
+            background: var(--feng-gold);
         }
 
         /* Custom date input styling */
@@ -182,9 +176,9 @@
         }
 
         .btn {
-            background: var(--ivory-mist);
-            color: var(--text);
-            border: 1px solid var(--dark-walnut);
+            background: var(--feng-gold);
+            color: var(--feng-brown);
+            border: 1px solid var(--feng-green);
             padding: 14px 26px;
             border-radius: 14px;
             font-size: 1rem;
@@ -192,15 +186,15 @@
             cursor: pointer;
             transition: all 0.25s ease;
             margin: 0 8px;
-            box-shadow: 0 2px 8px rgba(132, 112, 92, 0.1);
+            box-shadow: 0 2px 8px rgba(122, 54, 53, 0.1);
             text-shadow: none;
         }
 
         .btn:hover {
-            background: var(--dark-walnut);
-            color: var(--ivory-mist);
+            background: var(--feng-green);
+            color: var(--feng-gold);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(132, 112, 92, 0.2);
+            box-shadow: 0 4px 12px rgba(122, 54, 53, 0.2);
         }
 
         .btn:hover {
@@ -221,9 +215,9 @@
             text-align: center;
             margin: 24px 0;
             padding: 18px 20px;
-            background: linear-gradient(145deg, rgba(46, 125, 90, 0.06), rgba(46, 125, 90, 0.08));
+            background: linear-gradient(145deg, rgba(125, 162, 105, 0.06), rgba(125, 162, 105, 0.08));
             border-radius: 14px;
-            border: 1px solid rgba(46, 125, 90, 0.25);
+            border: 1px solid rgba(125, 162, 105, 0.25);
             animation: fadeInUp 0.4s ease-out;
         }
 
@@ -239,16 +233,16 @@
         }
 
         .result h3 {
-            color: var(--success);
+            color: var(--feng-green);
             margin-bottom: 15px;
             font-size: 1.3rem;
             font-weight: 700;
         }
 
-    .code-display { 
+        .code-display { 
         font-size: 3.5rem; 
         font-weight: 300; 
-        color: var(--dark-walnut); 
+        color: var(--feng-brown); 
         letter-spacing: 15px; 
         margin: 40px 0; 
         direction: ltr; 
@@ -257,9 +251,7 @@
         padding: 30px;
         animation: gentleFloat 3s ease-in-out infinite;
         transition: all 0.3s ease;
-    }
-
-    @keyframes gentleFloat {
+    }    @keyframes gentleFloat {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-5px); }
     }
@@ -268,26 +260,26 @@
             display: inline-block;
             padding: 10px 16px;
             margin: 5px;
-            background: linear-gradient(135deg, var(--warm-gold), var(--gold-light));
-            color: var(--text);
+            background: linear-gradient(135deg, var(--feng-green), var(--feng-teal));
+            color: var(--feng-gold);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.25s ease;
             font-weight: 700;
             font-size: 1.05rem;
-            box-shadow: 0 4px 10px rgba(63, 46, 32, 0.08);
-            border: 1px solid rgba(231, 217, 182, 0.8);
+            box-shadow: 0 4px 10px rgba(122, 54, 53, 0.08);
+            border: 1px solid rgba(243, 228, 199, 0.8);
         }
 
         .number-btn:hover {
-            background: linear-gradient(135deg, var(--gold-light), var(--warm-gold));
+            background: linear-gradient(135deg, var(--feng-teal), var(--feng-green));
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(63, 46, 32, 0.1);
+            box-shadow: 0 8px 16px rgba(122, 54, 53, 0.1);
         }
 
         .payment-section {
-            background: linear-gradient(145deg, rgba(231, 217, 182, 0.15), rgba(237, 232, 222, 0.25));
-            border: 1px solid var(--warm-gold);
+            background: linear-gradient(145deg, rgba(243, 228, 199, 0.15), rgba(205, 191, 168, 0.25));
+            border: 1px solid var(--feng-green);
             border-radius: 16px;
             padding: 24px;
             margin: 26px 0;
@@ -309,7 +301,7 @@
         }
 
         .payment-section h3 {
-            color: var(--desert-rock);
+            color: var(--feng-brown);
             margin-bottom: 10px;
             font-size: 1.4rem;
             font-weight: 700;
@@ -318,38 +310,38 @@
         .price-tag {
             font-size: 1.9rem;
             font-weight: 800;
-            color: var(--desert-rock);
+            color: var(--feng-brown);
             margin: 12px 0;
         }
 
         .old-price {
             text-decoration: line-through;
-            color: #8d8175;
+            color: var(--feng-gray-brown);
             font-size: 1.2rem;
             margin-left: 10px;
         }
 
         .discount {
-            background: linear-gradient(135deg, #e7d9b6, #ecdcb9);
-            color: var(--text);
+            background: linear-gradient(135deg, var(--feng-gold), var(--feng-light-brown));
+            color: var(--feng-brown);
             padding: 6px 12px;
             border-radius: 18px;
             font-size: 0.85rem;
             margin-right: 8px;
             font-weight: 600;
             display: inline-block;
-            box-shadow: 0 4px 10px rgba(63, 46, 32, 0.08);
+            box-shadow: 0 4px 10px rgba(122, 54, 53, 0.08);
         }
 
     .interpretations { margin-top: 34px; }
 
         .interpretation-card {
-            background: linear-gradient(180deg, var(--feather-white), rgba(248, 249, 245, 0.85));
+            background: linear-gradient(180deg, var(--feng-gold), rgba(205, 191, 168, 0.85));
             border-radius: 14px;
             padding: 22px;
             margin: 18px 0;
-            box-shadow: 0 8px 18px rgba(63, 46, 32, 0.08);
-            border-right: 3px solid var(--warm-gold);
+            box-shadow: 0 8px 18px rgba(122, 54, 53, 0.08);
+            border-right: 3px solid var(--feng-green);
             display: none;
             animation: fadeInUp 0.5s ease-out;
         }
@@ -381,7 +373,7 @@
         .interpretation-title {
             font-size: 1.35rem;
             font-weight: 700;
-            color: var(--desert-rock);
+            color: var(--feng-brown);
         }
 
         .interpretation-content {
@@ -410,9 +402,9 @@
             border-radius: 15px;
         }
 
-    .strengths { background: linear-gradient(145deg, rgba(46, 125, 90, 0.06), rgba(46, 125, 90, 0.1)); border-right: 3px solid var(--success); }
+    .strengths { background: linear-gradient(145deg, rgba(125, 162, 105, 0.06), rgba(125, 162, 105, 0.1)); border-right: 3px solid var(--feng-green); }
 
-    .challenges { background: linear-gradient(145deg, rgba(199, 91, 74, 0.06), rgba(199, 91, 74, 0.1)); border-right: 3px solid var(--error); }
+    .challenges { background: linear-gradient(145deg, rgba(199, 91, 74, 0.06), rgba(199, 91, 74, 0.1)); border-right: 3px solid var(--feng-brown); }
 
         .strengths h4, .challenges h4 {
             font-weight: 700;
@@ -421,11 +413,11 @@
         }
 
         .strengths h4 {
-            color: var(--success);
+            color: var(--feng-green);
         }
 
         .challenges h4 {
-            color: var(--error);
+            color: var(--feng-brown);
         }
 
         .strengths ul, .challenges ul {
@@ -439,12 +431,12 @@
         }
 
         .error {
-            background: linear-gradient(145deg, rgba(231, 76, 60, 0.1), rgba(255, 99, 99, 0.1));
-            color: var(--error);
+            background: linear-gradient(145deg, rgba(199, 91, 74, 0.1), rgba(255, 99, 99, 0.1));
+            color: var(--feng-brown);
             padding: 20px;
             border-radius: 15px;
             margin: 20px 0;
-            border: 2px solid rgba(231, 76, 60, 0.3);
+            border: 2px solid rgba(199, 91, 74, 0.3);
             font-weight: 600;
         }
 
@@ -463,11 +455,11 @@
         }
 
         .explanation-card {
-            background: linear-gradient(145deg, var(--feather-white), rgba(237, 232, 222, 0.9));
+            background: linear-gradient(145deg, var(--feng-gold), rgba(205, 191, 168, 0.9));
             border-radius: 18px;
             padding: 28px;
-            box-shadow: 0 12px 26px rgba(63, 46, 32, 0.08);
-            border: 1px solid rgba(231, 217, 182, 0.7);
+            box-shadow: 0 12px 26px rgba(122, 54, 53, 0.08);
+            border: 1px solid rgba(243, 228, 199, 0.7);
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(6px);
@@ -493,11 +485,11 @@
 
         .explanation-icon {
             font-size: 2.2rem;
-            color: var(--desert-rock);
+            color: var(--feng-brown);
         }
 
         .explanation-header h3 {
-            color: var(--desert-rock);
+            color: var(--feng-brown);
             font-size: 1.6rem;
             font-weight: 700;
             margin: 0;
@@ -508,27 +500,25 @@
     .explanation-text > p:first-child { font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; color: var(--desert-rock); }
 
         .key-insight {
-            background: linear-gradient(145deg, rgba(231, 217, 182, 0.15), rgba(237, 232, 222, 0.25));
+            background: linear-gradient(145deg, rgba(243, 228, 199, 0.15), rgba(205, 191, 168, 0.25));
             padding: 16px;
             border-radius: 12px;
             margin: 16px 0;
-            border-right: 3px solid var(--warm-gold);
-            box-shadow: 0 4px 10px rgba(63, 46, 32, 0.06);
+            border-right: 3px solid var(--feng-green);
+            box-shadow: 0 4px 10px rgba(122, 54, 53, 0.06);
         }
 
-    .key-insight h4 { color: var(--desert-rock); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-
-        .key-insight p {
+        .key-insight h4 { color: var(--feng-brown); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }        .key-insight p {
             margin: 0;
             color: var(--rich-brown);
         }
 
         .important-note {
-            background: linear-gradient(145deg, rgba(46, 125, 90, 0.06), rgba(46, 125, 90, 0.1));
+            background: linear-gradient(145deg, rgba(125, 162, 105, 0.06), rgba(125, 162, 105, 0.1));
             padding: 16px;
             border-radius: 12px;
             margin-top: 18px;
-            border: 1px solid rgba(46, 125, 90, 0.25);
+            border: 1px solid rgba(125, 162, 105, 0.25);
             text-align: center;
         }
 
