@@ -107,8 +107,8 @@
             margin-top: 6px;
             height: 150px;
             width: auto;
-            opacity: 0.95;
-            filter: drop-shadow(0 2px 8px var(--amber-gold)) sepia(0.2) hue-rotate(15deg) saturate(1.3) brightness(1.1);
+            opacity: 0.9;
+            filter: brightness(0.5) saturate(0.5) contrast(1.2);
         }
 
         .card {
@@ -182,18 +182,25 @@
         }
 
         .btn {
-            background: linear-gradient(135deg, var(--champagne), var(--amber-gold));
-            color: var(--dark-walnut);
-            border: none;
+            background: var(--ivory-mist);
+            color: var(--text);
+            border: 1px solid var(--dark-walnut);
             padding: 14px 26px;
             border-radius: 14px;
             font-size: 1rem;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.25s ease;
             margin: 0 8px;
-            box-shadow: 0 8px 18px rgba(132, 112, 92, 0.15);
+            box-shadow: 0 2px 8px rgba(132, 112, 92, 0.1);
             text-shadow: none;
+        }
+
+        .btn:hover {
+            background: var(--dark-walnut);
+            color: var(--ivory-mist);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(132, 112, 92, 0.2);
         }
 
         .btn:hover {
@@ -239,18 +246,13 @@
         }
 
     .code-display { 
-        font-size: 3rem; 
+        font-size: 3.5rem; 
         font-weight: 300; 
-        color: var(--champagne); 
-        letter-spacing: 12px; 
+        color: var(--dark-walnut); 
+        letter-spacing: 15px; 
         margin: 40px 0; 
         direction: ltr; 
         text-align: center;
-        background: linear-gradient(135deg, var(--champagne), var(--amber-gold));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 3px 6px rgba(167, 131, 90, 0.3);
         font-family: 'Assistant', sans-serif;
         padding: 30px;
         animation: gentleFloat 3s ease-in-out infinite;
