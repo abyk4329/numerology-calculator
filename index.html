@@ -10,16 +10,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Feng Shui Compass inspired palette */
-            --cinna: #CFB3A9; /* Light rose */
-            --creme: #8B7355; /* Medium brown */
-            --froth: #F1EEEB; /* Creamy white */
-            --latte: #A09086; /* Gray brown */
-            --chai: #E4D8CB; /* Light gold brown */
-            --gold: #F7E7CE; /* Gold */
-            --text: #3f2e20; /* Deep soft brown - keeping for readability */
-            --success: #2e7d4f;
-            --error: #c75b4a;
+            /* Elegant & Bright Feng Shui inspired palette */
+            --cinna: #E8CCC0; /* Softer, lighter rose */
+            --creme: #A08977; /* Slightly lighter brown */
+            --froth: #FAFAF9; /* Brighter creamy white */
+            --latte: #B5A89E; /* Lighter gray brown */
+            --chai: #F0E6DA; /* Much lighter gold brown */
+            --gold: #FCFAF7; /* Very light gold */
+            --text: #5A4A3A; /* Softer brown for better readability */
+            --success: #4A9B68;
+            --error: #D4756B;
             /* Main color aliases for consistency */
             --desert-rock: var(--creme);
             --soft-sandstone: var(--chai);
@@ -41,7 +41,7 @@
 
         body {
             font-family: 'Assistant', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-            background: linear-gradient(180deg, var(--froth) 0%, var(--chai) 60%);
+            background: linear-gradient(180deg, var(--froth) 0%, var(--gold) 30%, var(--chai) 100%);
             min-height: 100vh;
             color: var(--text);
             direction: rtl;
@@ -56,12 +56,12 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(160, 129, 90, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(231, 217, 182, 0.08) 0%, transparent 55%),
-                radial-gradient(circle at 50% 50%, rgba(225, 210, 187, 0.06) 0%, transparent 50%);
+                radial-gradient(circle at 20% 30%, rgba(232, 204, 192, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(240, 230, 218, 0.12) 0%, transparent 65%),
+                radial-gradient(circle at 50% 50%, rgba(252, 250, 247, 0.1) 0%, transparent 70%);
             pointer-events: none;
             z-index: -1;
-            animation: backgroundFlow 20s ease-in-out infinite;
+            animation: backgroundFlow 25s ease-in-out infinite;
         }
 
         @keyframes backgroundFlow {
@@ -82,17 +82,17 @@
 
         .header h1 {
             font-size: 2.4rem;
-            color: var(--feng-brown);
+            color: var(--creme);
             margin-bottom: 6px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
         }
 
         .header p {
             font-size: 1rem;
-            color: var(--feng-brown);
-            font-weight: 500;
-            opacity: 0.9;
+            color: var(--creme);
+            font-weight: 400;
+            opacity: 0.85;
         }
 
         .signature-image {
@@ -104,15 +104,16 @@
         }
 
         .card {
-            background: rgba(255,255,255,0.8);
-            border-radius: 16px;
-            padding: 26px;
-            box-shadow: 0 10px 24px rgba(63, 46, 32, 0.07);
-            border: 1px solid rgba(0,0,0,0.03);
-            margin-bottom: 26px;
+            background: rgba(255,255,255,0.92);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 12px 30px rgba(90, 74, 58, 0.08);
+            border: 1px solid rgba(255,255,255,0.6);
+            margin-bottom: 30px;
             position: relative;
             overflow: hidden;
             text-align: center;
+            backdrop-filter: blur(10px);
         }
 
         .card::before {
@@ -122,9 +123,9 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--warm-gold), var(--gold-light), var(--warm-gold));
+            background: linear-gradient(90deg, var(--cinna), var(--chai), var(--cinna));
             background-size: 200% 100%;
-            animation: shimmer 6s ease-in-out infinite;
+            animation: shimmer 8s ease-in-out infinite;
         }
 
         @keyframes shimmer {
@@ -146,21 +147,23 @@
 
         .form-group input {
             width: 100%;
-            padding: 15px 20px;
-            border: 2px solid var(--feng-light-brown);
-            border-radius: 15px;
+            padding: 16px 22px;
+            border: 2px solid rgba(232, 204, 192, 0.4);
+            border-radius: 16px;
             font-size: 1rem;
-            background: var(--feng-gold);
+            background: var(--gold);
             transition: all 0.3s ease;
             font-family: inherit;
             color: var(--text);
+            box-shadow: 0 2px 8px rgba(90, 74, 58, 0.04);
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: var(--feng-green);
-            box-shadow: 0 0 0 3px rgba(125, 162, 105, 0.1);
-            background: var(--feng-gold);
+            border-color: var(--cinna);
+            box-shadow: 0 0 0 3px rgba(232, 204, 192, 0.15), 0 4px 16px rgba(90, 74, 58, 0.08);
+            background: var(--froth);
+            transform: translateY(-1px);
         }
 
         /* Custom date input styling */
@@ -174,49 +177,50 @@
         }
 
         .btn {
-            background: var(--feng-gold);
-            color: var(--feng-brown);
-            border: 2px solid var(--feng-green);
-            padding: 14px 26px;
-            border-radius: 14px;
+            background: var(--gold);
+            color: var(--creme);
+            border: 2px solid var(--cinna);
+            padding: 16px 30px;
+            border-radius: 16px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             margin: 0 8px;
-            box-shadow: 0 2px 8px rgba(139, 115, 85, 0.1);
+            box-shadow: 0 4px 12px rgba(90, 74, 58, 0.1);
             text-shadow: none;
         }
 
         .btn:hover {
-            background: var(--feng-green);
-            color: var(--feng-gold);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.2);
+            background: var(--cinna);
+            color: var(--froth);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(90, 74, 58, 0.15);
         }
 
         .btn-secondary {
-            background: linear-gradient(135deg, var(--feng-brown), var(--feng-gray-brown));
-            color: var(--feng-gold);
-            border: 2px solid var(--feng-teal);
-            box-shadow: 0 8px 20px rgba(139, 115, 85, 0.3);
+            background: linear-gradient(135deg, var(--creme), var(--latte));
+            color: var(--froth);
+            border: 2px solid var(--cinna);
+            box-shadow: 0 6px 16px rgba(90, 74, 58, 0.2);
         }
 
         .btn-secondary:hover {
-            background: linear-gradient(135deg, var(--feng-teal), var(--feng-green));
-            color: var(--feng-gold);
-            transform: translateY(-1px);
-            box-shadow: 0 12px 25px rgba(139, 115, 85, 0.4);
+            background: linear-gradient(135deg, var(--cinna), var(--creme));
+            color: var(--froth);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(90, 74, 58, 0.25);
         }
 
         .result {
             text-align: center;
-            margin: 24px 0;
-            padding: 18px 20px;
-            background: linear-gradient(145deg, rgba(247, 231, 206, 0.15), rgba(247, 231, 206, 0.25));
-            border-radius: 14px;
-            border: 2px solid rgba(125, 162, 105, 0.3);
-            animation: fadeInUp 0.4s ease-out;
+            margin: 28px 0;
+            padding: 24px 26px;
+            background: linear-gradient(145deg, rgba(252, 250, 247, 0.3), rgba(240, 230, 218, 0.4));
+            border-radius: 18px;
+            border: 2px solid rgba(232, 204, 192, 0.3);
+            animation: fadeInUp 0.5s ease-out;
+            box-shadow: 0 6px 20px rgba(90, 74, 58, 0.06);
         }
 
         @keyframes fadeInUp {
@@ -231,10 +235,10 @@
         }
 
         .result h3 {
-            color: var(--feng-green);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            font-weight: 700;
+            color: var(--cinna);
+            margin-bottom: 18px;
+            font-size: 1.4rem;
+            font-weight: 600;
         }
 
         .code-display { 
@@ -256,34 +260,35 @@
 
         .number-btn {
             display: inline-block;
-            padding: 10px 16px;
-            margin: 5px;
-            background: linear-gradient(135deg, var(--feng-green), var(--feng-teal));
-            color: var(--feng-gold);
-            border-radius: 12px;
+            padding: 12px 18px;
+            margin: 6px;
+            background: linear-gradient(135deg, var(--cinna), var(--chai));
+            color: var(--froth);
+            border-radius: 14px;
             cursor: pointer;
-            transition: all 0.25s ease;
-            font-weight: 700;
-            font-size: 1.05rem;
-            box-shadow: 0 4px 10px rgba(139, 115, 85, 0.08);
-            border: 2px solid rgba(247, 231, 206, 0.8);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(90, 74, 58, 0.12);
+            border: 2px solid rgba(252, 250, 247, 0.8);
         }
 
         .number-btn:hover {
-            background: linear-gradient(135deg, var(--feng-teal), var(--feng-green));
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(139, 115, 85, 0.1);
+            background: linear-gradient(135deg, var(--chai), var(--cinna));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(90, 74, 58, 0.18);
         }
 
         .payment-section {
-            background: linear-gradient(145deg, rgba(247, 231, 206, 0.15), rgba(205, 191, 168, 0.25));
-            border: 2px solid var(--feng-green);
-            border-radius: 16px;
-            padding: 24px;
-            margin: 26px 0;
+            background: linear-gradient(145deg, rgba(252, 250, 247, 0.25), rgba(240, 230, 218, 0.35));
+            border: 2px solid var(--cinna);
+            border-radius: 20px;
+            padding: 28px;
+            margin: 30px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 24px rgba(90, 74, 58, 0.08);
         }
 
         .payment-section::before {
@@ -293,42 +298,42 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--warm-gold), var(--gold-light), var(--warm-gold));
+            background: linear-gradient(90deg, var(--cinna), var(--chai), var(--cinna));
             background-size: 200% 100%;
-            animation: shimmer 6s ease-in-out infinite;
+            animation: shimmer 8s ease-in-out infinite;
         }
 
         .payment-section h3 {
-            color: var(--feng-brown);
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-            font-weight: 700;
+            color: var(--creme);
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .price-tag {
-            font-size: 1.9rem;
-            font-weight: 800;
-            color: var(--feng-brown);
-            margin: 12px 0;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--creme);
+            margin: 15px 0;
         }
 
         .old-price {
             text-decoration: line-through;
-            color: var(--feng-gray-brown);
-            font-size: 1.2rem;
+            color: var(--latte);
+            font-size: 1.3rem;
             margin-left: 10px;
         }
 
         .discount {
-            background: linear-gradient(135deg, var(--feng-gold), var(--feng-brown));
-            color: var(--feng-gold);
-            padding: 6px 12px;
-            border-radius: 18px;
-            font-size: 0.85rem;
-            margin-right: 8px;
+            background: linear-gradient(135deg, var(--cinna), var(--creme));
+            color: var(--froth);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
             font-weight: 600;
             display: inline-block;
-            box-shadow: 0 4px 10px rgba(139, 115, 85, 0.08);
+            box-shadow: 0 4px 12px rgba(90, 74, 58, 0.15);
         }
 
     .interpretations { margin-top: 34px; }
