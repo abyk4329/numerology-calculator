@@ -25,15 +25,21 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
           font-family: 'Assistant', sans-serif;
-          background: linear-gradient(180deg, var(--froth) 0%, var(--chai) 60%);
+          background: linear-gradient(180deg, var(--froth) 0%, var(--chai) 70%, var(--cinna) 100%);
           color: var(--latte);
           direction: rtl;
           text-align: center;
           min-height: 100vh;
           -webkit-font-smoothing: antialiased;
+          padding: 20px 0;
         }
 
-        .container { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
+        .container { 
+          max-width: 600px; 
+          margin: 0 auto; 
+          padding: 30px 20px; 
+          position: relative;
+        }
 
         .signature-center { display: flex; justify-content: center; margin: 12px 0; }
         .signature-large { max-width: 200px; height: auto; opacity: 0.95; }
@@ -44,19 +50,23 @@
           flex-direction: column;
           align-items: center;
           gap: 16px;
-          margin-bottom: 28px;
+          margin-bottom: 32px;
+          text-align: center;
         }
 
         header h1 {
-          font-size: 28px;
+          font-size: 32px;
           color: var(--creme);
           font-weight: 700;
           margin: 0;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         header p {
-          color: var(--creme);
-          margin: 6px 0 0;
+          color: var(--latte);
+          margin: 8px 0 0;
+          font-size: 16px;
+          line-height: 1.5;
         }
 
         .compass-btn {
@@ -95,11 +105,12 @@
         }
 
         .section {
-          background: rgba(255,255,255,0.8);
-          border-radius: 16px;
-          padding: 28px;
-          margin: 18px 0;
-          border: 1px solid rgba(0,0,0,0.03);
+          background: rgba(255,255,255,0.9);
+          border-radius: 20px;
+          padding: 32px;
+          margin: 24px 0;
+          border: 1px solid rgba(139,115,85,0.1);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.08);
           display: none;
         }
 
@@ -108,40 +119,85 @@
         }
 
         .section h2 {
-          font-size: 20px;
-          color: var(--chai);
-          margin-bottom: 14px;
+          font-size: 24px;
+          color: var(--creme);
+          margin-bottom: 20px;
+          font-weight: 600;
         }
 
-        .form-group { margin-bottom: 14px; text-align: center; }
+        .form-group { 
+          margin-bottom: 18px; 
+          text-align: center; 
+        }
+        
         label {
           display: block;
-          margin-bottom: 6px;
+          margin-bottom: 8px;
           color: var(--creme);
           font-weight: 500;
+          font-size: 16px;
         }
 
         input, select {
           width: 100%;
-          padding: 12px 14px;
-          border-radius: 8px;
-          border: 1px solid rgba(0,0,0,0.06);
+          padding: 14px 16px;
+          border-radius: 12px;
+          border: 2px solid rgba(139,115,85,0.2);
           background: #fff;
           color: var(--muted);
-          font-size: 15px;
+          font-size: 16px;
+          transition: border-color 0.3s ease;
         }
 
-        input:focus, select:focus { outline: none; }
-        .form-error { color: var(--cinna); margin-top: 8px; min-height: 20px; }
+        input:focus, select:focus { 
+          outline: none; 
+          border-color: var(--creme);
+        }
+        
+        .form-error { 
+          color: var(--cinna); 
+          margin-top: 8px; 
+          min-height: 20px; 
+          font-size: 14px;
+        }
 
         button {
           background: var(--gold);
           color: #2b2b2b;
-          padding: 10px 20px;
-          border-radius: 10px;
+          padding: 14px 28px;
+          border-radius: 12px;
           border: none;
           cursor: pointer;
           font-weight: 600;
+          font-size: 16px;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .compass-btn {
+          background: var(--creme);
+          color: #fff;
+          padding: 16px 32px;
+          border: none;
+          border-radius: 16px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          margin: 40px auto;
+          display: block;
+          transition: all 0.3s ease;
+          box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+        }
+
+        .compass-btn:hover {
+          background: var(--latte);
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(0,0,0,0.18);
         }
 
         .kua-number {
@@ -321,27 +377,273 @@
 
         footer { text-align: center; color: var(--creme); margin-top: 26px; }
 
+        /* Calculator Form Styling */
+        .card {
+          background: rgba(255,255,255,0.9);
+          border-radius: 20px;
+          padding: 32px;
+          margin: 24px 0;
+          border: 1px solid rgba(139,115,85,0.1);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .btn {
+          background: var(--gold);
+          color: #2b2b2b;
+          padding: 14px 28px;
+          border-radius: 12px;
+          border: none;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 16px;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          margin: 0 8px;
+        }
+
+        .btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+          background: var(--creme);
+          color: #fff;
+        }
+
+        .btn-secondary:hover {
+          background: var(--latte);
+        }
+
+        .result {
+          text-align: center;
+          margin-top: 30px;
+        }
+
+        .result h3 {
+          color: var(--creme);
+          font-size: 24px;
+          margin-bottom: 20px;
+          font-weight: 600;
+        }
+
+        .code-display {
+          font-size: 48px;
+          font-weight: 700;
+          color: var(--cinna);
+          margin: 20px 0;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .payment-section {
+          background: rgba(247,231,206,0.3);
+          border-radius: 16px;
+          padding: 24px;
+          margin: 30px 0;
+          border: 2px solid var(--gold);
+          text-align: center;
+        }
+
+        .payment-section h3 {
+          color: var(--creme);
+          font-size: 22px;
+          margin-bottom: 12px;
+          font-weight: 600;
+        }
+
+        .payment-section p {
+          color: var(--latte);
+          margin-bottom: 20px;
+          font-size: 16px;
+        }
+
+        .price-tag {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          margin: 20px 0;
+          flex-wrap: wrap;
+        }
+
+        .old-price {
+          text-decoration: line-through;
+          color: var(--cinna);
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        .discount {
+          background: var(--cinna);
+          color: #fff;
+          padding: 4px 8px;
+          border-radius: 12px;
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .price-tag strong {
+          font-size: 28px;
+          color: var(--creme);
+          font-weight: 700;
+        }
+
+        .error {
+          background: rgba(207,179,169,0.1);
+          color: var(--cinna);
+          padding: 12px;
+          border-radius: 8px;
+          margin-bottom: 20px;
+          border: 1px solid var(--cinna);
+          font-weight: 500;
+        }
+
+        /* Interpretation Cards Styling */
+        .interpretation-card {
+          background: rgba(255,255,255,0.95);
+          border-radius: 20px;
+          padding: 24px;
+          margin: 20px 0;
+          border: 2px solid rgba(139,115,85,0.1);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+          display: none;
+        }
+
+        .interpretation-card.active {
+          display: block;
+          animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .interpretation-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 20px;
+          justify-content: center;
+        }
+
+        .interpretation-icon {
+          font-size: 32px;
+        }
+
+        .interpretation-title {
+          font-size: 24px;
+          color: var(--creme);
+          font-weight: 700;
+          margin: 0;
+        }
+
+        .interpretation-content {
+          text-align: right;
+          line-height: 1.6;
+        }
+
+        .main-description {
+          background: rgba(139,115,85,0.05);
+          padding: 20px;
+          border-radius: 12px;
+          margin-bottom: 20px;
+        }
+
+        .main-description p {
+          margin: 0;
+          color: var(--latte);
+          font-size: 16px;
+          line-height: 1.7;
+        }
+
+        .challenges, .strengths {
+          margin: 20px 0;
+          padding: 18px;
+          border-radius: 12px;
+        }
+
+        .challenges {
+          background: rgba(207,179,169,0.1);
+          border-right: 4px solid var(--cinna);
+        }
+
+        .strengths {
+          background: rgba(247,231,206,0.3);
+          border-right: 4px solid var(--gold);
+        }
+
+        .challenges h4, .strengths h4 {
+          color: var(--creme);
+          font-size: 18px;
+          margin-bottom: 12px;
+          font-weight: 600;
+        }
+
+        .challenges ul, .strengths ul {
+          list-style: none;
+          padding: 0;
+          margin: 12px 0;
+        }
+
+        .challenges li, .strengths li {
+          margin: 8px 0;
+          padding: 8px 0;
+          color: var(--latte);
+          font-size: 15px;
+          line-height: 1.6;
+        }
+
+        .challenges li strong, .strengths li strong {
+          color: var(--creme);
+          font-weight: 600;
+        }
+
+        .strengths p {
+          color: var(--latte);
+          font-size: 15px;
+          line-height: 1.6;
+          margin: 12px 0;
+        }
+
+        .interpretations {
+          margin-top: 40px;
+        }
+
         @media (max-width: 820px) {
           .compass { width: 320px; height: 320px; }
           .kua-number { font-size: 44px; }
           .directions-info { grid-template-columns: 1fr; }
+          .interpretation-card { padding: 20px; margin: 15px 0; }
+          .interpretation-title { font-size: 20px; }
+          .interpretation-icon { font-size: 28px; }
         }
 
         @media (max-width: 420px) {
           header h1 { font-size: 20px; }
           .compass { width: 280px; height: 280px; }
           .signature-large { max-width: 150px; }
+          .interpretation-card { padding: 16px; margin: 12px 0; }
+          .interpretation-title { font-size: 18px; }
+          .interpretation-icon { font-size: 24px; }
+          .main-description { padding: 16px; }
+          .challenges, .strengths { padding: 14px; }
         }
     </style>
 </head>
-</head>
 <body>
     <div class="container">
-        <div class="header">
+        <header>
             <h1>מחשבון קוד הכסף</h1>
-            <p>גלו את הקוד העושר היחודי שלכם</p>
+            <p>גלו את הקוד העושר הייחודי שלכם</p>
             <img src="חתימההה.png" alt="Ksenia's Signature" class="signature-image" />
-        </div>
+        </header>
 
         <div class="card">
             <div id="error" class="error" style="display: none;"></div>

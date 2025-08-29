@@ -10,20 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Warm elegant palette */
-            --desert-rock: #A09086; /* Latte */
-            --soft-sandstone: #E4D8CB; /* Chai */
-            --creamed-oat: #E4D8CB; /* Chai alias */
-            --porcelain-mist: #CDC6C3; /* Creme */
-            --feather-white: #F1EEEB; /* Froth */
-            --warm-gold: #CFB3A9; /* Cinna */
-            --gold-light: #E4D8CB; /* Chai light */
-            --text: #3f2e20; /* Deep soft brown */
-            --success: #2e7d4f;
-            --error: #c75b4a;
-            /* Extras used in explanation section */
+            /* Feng Shui inspired palette matching main site */
+            --cinna: #CFB3A9;
+            --creme: #8B7355;
+            --froth: #F1EEEB;
+            --latte: #A09086;
+            --chai: #E4D8CB;
+            --gold: #F7E7CE;
+            --text: var(--latte);
+            --success: #4A9B68;
+            --error: var(--cinna);
+            /* Main color aliases for consistency */
+            --desert-rock: var(--creme);
+            --soft-sandstone: var(--chai);
+            --creamed-oat: var(--gold);
+            --porcelain-mist: var(--froth);
+            --feather-white: var(--froth);
+            --warm-gold: var(--gold);
+            --gold-light: var(--chai);
             --rich-brown: var(--text);
-            --cream-beige: var(--porcelain-mist);
+            --cream-beige: var(--chai);
         }
 
         * {
@@ -33,12 +39,14 @@
         }
 
         body {
-            font-family: 'Playfair Display', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(160deg, var(--feather-white) 0%, var(--porcelain-mist) 60%, var(--soft-sandstone) 100%);
+            font-family: 'Assistant', sans-serif;
+            background: linear-gradient(180deg, var(--froth) 0%, var(--chai) 70%, var(--cinna) 100%);
             min-height: 100vh;
-            color: var(--text);
+            color: var(--latte);
             direction: rtl;
             position: relative;
+            -webkit-font-smoothing: antialiased;
+            padding: 20px 0;
         }
 
         body::before {

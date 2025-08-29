@@ -9,16 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Elegant & Bright Feng Shui inspired palette */
-            --cinna: #E8CCC0; /* Softer, lighter rose */
-            --creme: #A08977; /* Slightly lighter brown */
-            --froth: #FAFAF9; /* Brighter creamy white */
-            --latte: #B5A89E; /* Lighter gray brown */
-            --chai: #F0E6DA; /* Much lighter gold brown */
-            --gold: #FCFAF7; /* Very light gold */
-            --text: #5A4A3A; /* Softer brown for better readability */
+            /* Feng Shui inspired palette matching main site */
+            --cinna: #CFB3A9;
+            --creme: #8B7355;
+            --froth: #F1EEEB;
+            --latte: #A09086;
+            --chai: #E4D8CB;
+            --gold: #F7E7CE;
+            --text: var(--latte);
             --success: #4A9B68;
-            --error: #D4756B;
+            --error: var(--cinna);
             /* Main color aliases for consistency */
             --desert-rock: var(--creme);
             --soft-sandstone: var(--chai);
@@ -30,20 +30,21 @@
             --elegant-gold: var(--cinna);
             --rich-brown: var(--text);
             --cream-beige: var(--chai);
-            --success-pastel: #B8D4C2;
-            --gentle-rose: #E8C4B0;
+            --success-pastel: rgba(74,155,104,0.1);
+            --gentle-rose: var(--cinna);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Assistant', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-            background: linear-gradient(160deg, var(--froth) 0%, var(--gold) 50%, var(--chai) 100%);
+            background: linear-gradient(180deg, var(--froth) 0%, var(--chai) 70%, var(--cinna) 100%);
             min-height: 100vh;
-            color: var(--text);
+            color: var(--latte);
             direction: rtl;
             position: relative;
             overflow-x: hidden;
+            padding: 20px 0;
         }
 
         body::before {
