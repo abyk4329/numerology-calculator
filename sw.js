@@ -1,9 +1,9 @@
 // Service Worker for Numerology Calculator PWA (consolidated)
 const CACHE_NAME = 'numerology-calculator-v2';
 const urlsToCache = [
-  '/index.html',
-  '/pay.html',
-  '/manifest.json'
+  './index.html',
+  './pay.html',
+  './manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
