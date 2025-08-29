@@ -11,28 +11,26 @@
     <style>
         :root {
             /* Feng Shui Compass inspired palette */
-            --feng-green: #7da269; /* Main green accent */
-            --feng-brown: #7a3635; /* Deep brown/red */
-            --feng-bg: #b8ae98; /* Background beige */
-            --feng-gold: #f3e4c7; /* Light gold/beige */
-            --feng-teal: #009a82; /* Teal accent */
-            --feng-dark-brown: #8b4d4a; /* Dark brown */
-            --feng-light-brown: #cdbfa8; /* Light brown */
-            --feng-gray-brown: #bcb098; /* Gray brown */
+            --cinna: #CFB3A9; /* Light rose */
+            --creme: #8B7355; /* Medium brown */
+            --froth: #F1EEEB; /* Creamy white */
+            --latte: #A09086; /* Gray brown */
+            --chai: #E4D8CB; /* Light gold brown */
+            --gold: #F7E7CE; /* Gold */
             --text: #3f2e20; /* Deep soft brown - keeping for readability */
             --success: #2e7d4f;
             --error: #c75b4a;
             /* Main color aliases for consistency */
-            --desert-rock: var(--feng-brown);
-            --soft-sandstone: var(--feng-bg);
-            --creamed-oat: var(--feng-gold);
-            --porcelain-mist: var(--feng-light-brown);
-            --feather-white: var(--feng-gold);
-            --warm-gold: var(--feng-green);
-            --gold-light: var(--feng-gold);
-            --elegant-gold: var(--feng-teal);
+            --desert-rock: var(--creme);
+            --soft-sandstone: var(--chai);
+            --creamed-oat: var(--gold);
+            --porcelain-mist: var(--froth);
+            --feather-white: var(--froth);
+            --warm-gold: var(--gold);
+            --gold-light: var(--chai);
+            --elegant-gold: var(--cinna);
             --rich-brown: var(--text);
-            --cream-beige: var(--feng-light-brown);
+            --cream-beige: var(--chai);
         }
 
         * {
@@ -43,7 +41,7 @@
 
         body {
             font-family: 'Assistant', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-            background: linear-gradient(160deg, var(--feng-bg) 0%, var(--feng-gold) 80%, var(--feng-light-brown) 100%);
+            background: linear-gradient(180deg, var(--froth) 0%, var(--chai) 60%);
             min-height: 100vh;
             color: var(--text);
             direction: rtl;
@@ -106,11 +104,11 @@
         }
 
         .card {
-            background: linear-gradient(145deg, var(--feng-gold), rgba(243, 228, 199, 0.9));
-            border-radius: 18px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 16px;
             padding: 26px;
-            box-shadow: 0 10px 24px rgba(122, 54, 53, 0.07);
-            border: 1px solid rgba(125, 162, 105, 0.2);
+            box-shadow: 0 10px 24px rgba(63, 46, 32, 0.07);
+            border: 1px solid rgba(0,0,0,0.03);
             margin-bottom: 26px;
             position: relative;
             overflow: hidden;
@@ -178,7 +176,7 @@
         .btn {
             background: var(--feng-gold);
             color: var(--feng-brown);
-            border: 1px solid var(--feng-green);
+            border: 2px solid var(--feng-green);
             padding: 14px 26px;
             border-radius: 14px;
             font-size: 1rem;
@@ -186,7 +184,7 @@
             cursor: pointer;
             transition: all 0.25s ease;
             margin: 0 8px;
-            box-shadow: 0 2px 8px rgba(122, 54, 53, 0.1);
+            box-shadow: 0 2px 8px rgba(139, 115, 85, 0.1);
             text-shadow: none;
         }
 
@@ -194,30 +192,30 @@
             background: var(--feng-green);
             color: var(--feng-gold);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(122, 54, 53, 0.2);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(63, 46, 32, 0.12);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.2);
         }
 
         .btn-secondary {
-            background: linear-gradient(135deg, var(--desert-rock), var(--soft-sandstone));
-            box-shadow: 0 8px 20px rgba(164, 141, 120, 0.3);
+            background: linear-gradient(135deg, var(--feng-brown), var(--feng-gray-brown));
+            color: var(--feng-gold);
+            border: 2px solid var(--feng-teal);
+            box-shadow: 0 8px 20px rgba(139, 115, 85, 0.3);
         }
 
         .btn-secondary:hover {
-            box-shadow: 0 12px 25px rgba(164, 141, 120, 0.4);
+            background: linear-gradient(135deg, var(--feng-teal), var(--feng-green));
+            color: var(--feng-gold);
+            transform: translateY(-1px);
+            box-shadow: 0 12px 25px rgba(139, 115, 85, 0.4);
         }
 
         .result {
             text-align: center;
             margin: 24px 0;
             padding: 18px 20px;
-            background: linear-gradient(145deg, rgba(125, 162, 105, 0.06), rgba(125, 162, 105, 0.08));
+            background: linear-gradient(145deg, rgba(247, 231, 206, 0.15), rgba(247, 231, 206, 0.25));
             border-radius: 14px;
-            border: 1px solid rgba(125, 162, 105, 0.25);
+            border: 2px solid rgba(125, 162, 105, 0.3);
             animation: fadeInUp 0.4s ease-out;
         }
 
@@ -240,18 +238,18 @@
         }
 
         .code-display { 
-        font-size: 3.5rem; 
-        font-weight: 300; 
-        color: var(--feng-brown); 
-        letter-spacing: 15px; 
-        margin: 40px 0; 
-        direction: ltr; 
-        text-align: center;
-        font-family: 'Assistant', sans-serif;
-        padding: 30px;
-        animation: gentleFloat 3s ease-in-out infinite;
-        transition: all 0.3s ease;
-    }    @keyframes gentleFloat {
+            font-size: 3.5rem; 
+            font-weight: 300; 
+            color: var(--feng-brown); 
+            letter-spacing: 15px; 
+            margin: 40px 0; 
+            direction: ltr; 
+            text-align: center;
+            font-family: 'Assistant', sans-serif;
+            padding: 30px;
+            animation: gentleFloat 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }    @keyframes gentleFloat {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-5px); }
     }
@@ -267,19 +265,19 @@
             transition: all 0.25s ease;
             font-weight: 700;
             font-size: 1.05rem;
-            box-shadow: 0 4px 10px rgba(122, 54, 53, 0.08);
-            border: 1px solid rgba(243, 228, 199, 0.8);
+            box-shadow: 0 4px 10px rgba(139, 115, 85, 0.08);
+            border: 2px solid rgba(247, 231, 206, 0.8);
         }
 
         .number-btn:hover {
             background: linear-gradient(135deg, var(--feng-teal), var(--feng-green));
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(122, 54, 53, 0.1);
+            box-shadow: 0 8px 16px rgba(139, 115, 85, 0.1);
         }
 
         .payment-section {
-            background: linear-gradient(145deg, rgba(243, 228, 199, 0.15), rgba(205, 191, 168, 0.25));
-            border: 1px solid var(--feng-green);
+            background: linear-gradient(145deg, rgba(247, 231, 206, 0.15), rgba(205, 191, 168, 0.25));
+            border: 2px solid var(--feng-green);
             border-radius: 16px;
             padding: 24px;
             margin: 26px 0;
@@ -322,15 +320,15 @@
         }
 
         .discount {
-            background: linear-gradient(135deg, var(--feng-gold), var(--feng-light-brown));
-            color: var(--feng-brown);
+            background: linear-gradient(135deg, var(--feng-gold), var(--feng-brown));
+            color: var(--feng-gold);
             padding: 6px 12px;
             border-radius: 18px;
             font-size: 0.85rem;
             margin-right: 8px;
             font-weight: 600;
             display: inline-block;
-            box-shadow: 0 4px 10px rgba(122, 54, 53, 0.08);
+            box-shadow: 0 4px 10px rgba(139, 115, 85, 0.08);
         }
 
     .interpretations { margin-top: 34px; }
@@ -340,7 +338,7 @@
             border-radius: 14px;
             padding: 22px;
             margin: 18px 0;
-            box-shadow: 0 8px 18px rgba(122, 54, 53, 0.08);
+            box-shadow: 0 8px 18px rgba(139, 115, 85, 0.08);
             border-right: 3px solid var(--feng-green);
             display: none;
             animation: fadeInUp 0.5s ease-out;
@@ -384,16 +382,16 @@
         .main-description {
             margin-bottom: 18px;
             padding: 16px;
-            background: linear-gradient(145deg, rgba(231, 217, 182, 0.15), rgba(237, 232, 222, 0.25));
+            background: linear-gradient(145deg, rgba(247, 231, 206, 0.15), rgba(237, 232, 222, 0.25));
             border-radius: 12px;
-            border-right: 3px solid var(--warm-gold);
+            border-right: 3px solid var(--feng-green);
         }
 
         .main-description p {
             margin: 0;
             font-size: 1.05rem;
             line-height: 1.7;
-            color: var(--text);
+            color: var(--feng-brown);
         }
 
         .strengths, .challenges {
@@ -458,8 +456,8 @@
             background: linear-gradient(145deg, var(--feng-gold), rgba(205, 191, 168, 0.9));
             border-radius: 18px;
             padding: 28px;
-            box-shadow: 0 12px 26px rgba(122, 54, 53, 0.08);
-            border: 1px solid rgba(243, 228, 199, 0.7);
+            box-shadow: 0 12px 26px rgba(139, 115, 85, 0.08);
+            border: 2px solid rgba(247, 231, 206, 0.7);
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(6px);
@@ -495,22 +493,20 @@
             margin: 0;
         }
 
-    .explanation-content { color: var(--rich-brown); line-height: 1.7; font-size: 1.05rem; }
+    .explanation-content { color: var(--feng-brown); line-height: 1.7; font-size: 1.05rem; }
 
-    .explanation-text > p:first-child { font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; color: var(--desert-rock); }
-
-        .key-insight {
-            background: linear-gradient(145deg, rgba(243, 228, 199, 0.15), rgba(205, 191, 168, 0.25));
+        .explanation-text > p:first-child { font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; color: var(--feng-brown); }        .key-insight {
+            background: linear-gradient(145deg, rgba(247, 231, 206, 0.15), rgba(205, 191, 168, 0.25));
             padding: 16px;
             border-radius: 12px;
             margin: 16px 0;
             border-right: 3px solid var(--feng-green);
-            box-shadow: 0 4px 10px rgba(122, 54, 53, 0.06);
+            box-shadow: 0 4px 10px rgba(139, 115, 85, 0.06);
         }
 
         .key-insight h4 { color: var(--feng-brown); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }        .key-insight p {
             margin: 0;
-            color: var(--rich-brown);
+            color: var(--feng-brown);
         }
 
         .important-note {
@@ -522,7 +518,7 @@
             text-align: center;
         }
 
-    .important-note p { margin: 0; font-weight: 600; color: var(--rich-brown); }
+    .important-note p { margin: 0; font-weight: 600; color: var(--feng-brown); }
 
         @media (max-width: 768px) {
             .container {
